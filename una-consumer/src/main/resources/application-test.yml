@@ -20,3 +20,13 @@ spring:
         group: test
         #指定命名空间
         namespace: test
+
+    sentinel:
+      transport:
+        port: 18763
+        dashboard: localhost:8748
+
+# 通过feign.sentinel.enable开启Feign和sentinel的自动适配
+feign:
+  sentinel:
+    enabled: true

@@ -8,7 +8,25 @@
 `ahviplc/u-na: u-na:一个基于微服务架构的前后端分离的寄托希望梦想的内容分享系统.`
 > https://github.com/ahviplc/u-na
 
-## 搭建环境
+## 技术栈
+```markdown
+springboot
+maven
+git
+
+对应使用的组件如下：
+注册中心：nacos，替代方案eureka、consul、zookeeper
+配置中心: nacos ，替代方案sc config、consul config
+服务调用:feign，替代方案：resttempate
+熔断：sentinel、，替代方案：Resilience4j
+熔断监控：sentinel dashboard
+负载均衡:sc loadbalancer
+网关：spring cloud gateway
+链路：spring cloud sleuth+zipkin，替代方案：skywalking等。
+未完待续...
+```
+
+## 搭建项目运行环境
 
 ### aliyun
 
@@ -23,26 +41,14 @@ mysql 3360
 oracle 1521
 nacos 8848
 redis 6379
+gateway 5000
+sentinel 8748
 
 其他端口
 pass
 ```
 
 ### docker
-
-```markdown
-Install Docker Compose | Docker Documentation
-https://docs.docker.com/compose/install/
-
-Nacos 快速开始
-https://nacos.io/zh-cn/docs/quick-start.html
-
-Releases · alibaba/nacos · GitHub
-https://github.com/alibaba/nacos/releases
-
-Nacos Docker 快速开始
-https://nacos.io/zh-cn/docs/quick-start-docker.html
-```
 
 #### 安装Docker Compose
 
@@ -56,21 +62,15 @@ https://nacos.io/zh-cn/docs/quick-start-docker.html
 docker-compose --version
 ```
 
+### nacos
+`作为注册中心和配置中心`
+
 #### 使用docker部署nacos
+`使用docker部署nacos`
+> https://www.cnblogs.com/jeecg158/p/14029453.html
 
-> 使用docker部署nacos
-
-```markdown
-docker安装nacos - zhangdaiscott - 博客园
-https://www.cnblogs.com/jeecg158/p/14029453.html
-
-docker安装nacos_青岚飞雪博客-CSDN博客
-https://blog.csdn.net/qq_36215276/article/details/111922453
-```
-
-#### 具体安装nacos
-> 具体安装nacos
->
+#### 安装nacos
+`具体安装nacos`
 > https://www.cnblogs.com/jeecg158/p/14029453.html
 
 ```markdown
@@ -84,14 +84,103 @@ https://blog.csdn.net/qq_36215276/article/details/111922453
    默认用户名密码都是： nacos
 7. done.
 ```
+#### 手动下载安装运行nacos
+`从github下载,启动也可`
 
-## 开始
+> https://github.com/alibaba/nacos/releases
 
-> 代码...
+### sentinel
+`作为熔断器`
 
-## 搭建项目
+`从github下载`						
 
+> https://github.com/alibaba/Sentinel/releases
+
+`下载完 启动 需在 git bash 命令窗口下执行 端口8748`
+
+> java -Dserver.port=8748 -Dcsp.sentinel.dashboard.server=localhost:8748 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard-1.8.1.jar
+
+`默认使用8080端口`
+> java -jar .\sentinel-dashboard-1.8.1.jar
+
+`una-consumer应用名,服务的/hi-feign接口，增加一个流控规则`
 ```markdown
+在 `GET:http://una-provider/hi` 点击 +流控 按钮
+
+单机阈值设置为 1
+
+qps为1，快速访问 http://localhost:5000/consumer/hi-feign，会有失败的情况 会报以下错误:
+Blocked by Sentinel: ParamFlowException
+
+也可以在 Spring cloud gateway 上使用sentinel.
+流控规则为qps=1，
+快速访问 http://localhost:5000/consumer/hi-feign
+快速访问 http://localhost:5000/provider/hi
+在qps>1的情况下，会报以下的错误：
+Blocked by Sentinel: FlowException
+可见gateway上的sentinel的配置已经生效.
+```
+
+### Spring Cloud Sleuth+zipkin
+
+`实现链路追踪`
+
+`下载地址如下，并启动：`
+
+```sh
+curl -sSL https://zipkin.io/quickstart.sh | bash -s
+java -jar zipkin.jar
+```
+
+`访问zipkin的ui 界面，地址为localhost:9411`
+
+## 搭建项目代码
+
+`代码构建`
+
+## 访问我
+`下面是此项目的一些访问链接`
+
+`nacos` `账户密码都是nacos`
+> http://localhost:8848/nacos/index.html#/login
+
+`远程调用`
+> http://localhost:8763/hi-feign
+
+`直接调用`
+> http://localhost:8762/hi?name=ahviplc
+
+`引入网关gateway调用`
+> http://localhost:5000/consumer/hi-feign
+
+> http://localhost:5000/provider/hi?name=shviplc
+
+`引入Sentinel作为熔断器` `账户密码都是sentinel`
+> http://localhost:8748
+
+`访问zipkin的ui界面`
+> http://localhost:9411
+
+## 参考资料
+```markdown
+Install Docker Compose | Docker Documentation
+https://docs.docker.com/compose/install/
+
+docker安装nacos - zhangdaiscott - 博客园
+https://www.cnblogs.com/jeecg158/p/14029453.html
+
+docker安装nacos_青岚飞雪博客-CSDN博客
+https://blog.csdn.net/qq_36215276/article/details/111922453
+
+Nacos 快速开始
+https://nacos.io/zh-cn/docs/quick-start.html
+
+Releases · alibaba/nacos · GitHub
+https://github.com/alibaba/nacos/releases
+
+Nacos Docker 快速开始
+https://nacos.io/zh-cn/docs/quick-start-docker.html
+
 Spring Boot
 https://spring.io/projects/spring-boot
 
@@ -115,22 +204,31 @@ https://github.com/forezp/SpringCloudLearning/tree/master/sc-2020-chapter2
 
 gateway 不拦截指定路径_Spring Cloud Alibaba 路由网关(Gateway)_董天成的博客-CSDN博客
 https://blog.csdn.net/weixin_42393621/article/details/112404828
+
+SpringCloud 2020版本教程3：使用sentinel作为熔断器 - 方志朋的博客
+https://www.fangzhipeng.com/springcloud/2021/04/04/sc-2020-sentinel.html
+
+SpringCloudLearning/sc-2020-chapter3 at master · forezp/SpringCloudLearning
+https://github.com/forezp/SpringCloudLearning/tree/master/sc-2020-chapter3
+
+Releases · alibaba/Sentinel
+https://github.com/alibaba/Sentinel/releases
+
+SpringCloud 2020版本教程4：使用spring cloud sleuth+zipkin实现链路追踪 - 方志朋的博客
+https://www.fangzhipeng.com/springcloud/2021/04/05/sc-2020-sleuth.html
+
+SpringCloud 2020版本教程4：使用spring cloud sleuth+zipkin实现链路追踪 - 方志朋的博客
+https://www.fangzhipeng.com/springcloud/2021/04/05/sc-2020-sleuth.html
+
+Sentinel · alibaba/spring-cloud-alibaba Wiki
+https://github.com/alibaba/spring-cloud-alibaba/wiki/Sentinel
+
+网关限流 · alibaba/Sentinel Wiki
+https://github.com/alibaba/Sentinel/wiki/%E7%BD%91%E5%85%B3%E9%99%90%E6%B5%81
+
+spring中 allowBeanDefinitionOverriding(spring.main.allow-bean-definition-overriding)
+https://blog.csdn.net/liubenlong007/article/details/87885567
 ```
-
-## 访问我
-`nacos` `账户密码都是nacos`
-> http://localhost:8848/nacos/index.html#/login
-
-`远程调用`
-> http://localhost:8763/hi-feign
-
-`直接调用`
-> http://localhost:8762/hi?name=ahviplc
-
-`引入网管gateway调用`
-> http://localhost:5000/consumer/hi-feign
-
-> http://localhost:5000/provider/hi?name=shviplc
 
 ## 其他
 

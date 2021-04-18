@@ -40,3 +40,11 @@ spring:
             - Path=/consumer/**
           filters:
             - StripPrefix=1
+    # 引入熔断器 sentinel
+    sentinel:
+      transport:
+        port: 15000
+        dashboard: localhost:8748
+  # 默认不支持名称相同的bean的覆盖 这里改为 true
+  main:
+    allow-bean-definition-overriding: true
