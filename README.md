@@ -86,8 +86,10 @@ docker-compose --version
 ```
 #### 手动下载安装运行nacos
 `从github下载,启动也可`
-
 > https://github.com/alibaba/nacos/releases
+
+`下载完 导入 对应 nacos-config 数据库并配置 然后以下执行命令 单机模式启动`
+> .\startup.cmd -m standalone
 
 ### sentinel
 `作为熔断器`
