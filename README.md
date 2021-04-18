@@ -106,6 +106,15 @@ https://www.fangzhipeng.com/springcloud/2021/04/02/sc-2020-nacos.html
 
 SpringCloudLearning/sc-2020-chapter1 at master · forezp/SpringCloudLearning · GitHub
 https://github.com/forezp/SpringCloudLearning/tree/master/sc-2020-chapter1
+
+SpringCloud 2020版本教程2：使用spring cloud gateway作为服务网关 - 方志朋的博客
+https://www.fangzhipeng.com/springcloud/2021/04/03/sc-2020-gateway.html
+
+SpringCloudLearning/sc-2020-chapter2 at master · forezp/SpringCloudLearning
+https://github.com/forezp/SpringCloudLearning/tree/master/sc-2020-chapter2
+
+gateway 不拦截指定路径_Spring Cloud Alibaba 路由网关(Gateway)_董天成的博客-CSDN博客
+https://blog.csdn.net/weixin_42393621/article/details/112404828
 ```
 
 ## 访问我
@@ -118,6 +127,10 @@ https://github.com/forezp/SpringCloudLearning/tree/master/sc-2020-chapter1
 `直接调用`
 > http://localhost:8762/hi?name=ahviplc
 
+`引入网管gateway调用`
+> http://localhost:5000/consumer/hi-feign
+
+> http://localhost:5000/provider/hi?name=shviplc
 
 ## 其他
 

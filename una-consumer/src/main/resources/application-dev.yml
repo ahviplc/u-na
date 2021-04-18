@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: una-consumer-dev
+    name: una-consumer
   cloud:
     nacos:
       username: nacos
@@ -11,7 +11,7 @@ spring:
 
       discovery:
         server-addr: localhost:8848
-        service: una-consumer-dev
+        service: una-consumer
         namespace: dev
       config:
         server-addr: localhost:8848

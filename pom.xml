@@ -25,6 +25,7 @@
     <modules>
         <module>una-provider</module>
         <module>una-consumer</module>
+        <module>una-gateway</module>
     </modules>
 
     <dependencyManagement>
