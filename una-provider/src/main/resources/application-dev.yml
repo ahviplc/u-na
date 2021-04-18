@@ -1,0 +1,23 @@
+server:
+  port: 8762
+
+spring:
+  application:
+    name: una-provider
+
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+
+      discovery:
+        server-addr: localhost:8848
+        service: una-provider
+        namespace: dev
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+        #指定分组
+        group: dev
+        #指定命名空间
+        namespace: dev
