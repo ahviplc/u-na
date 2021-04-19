@@ -1,14 +1,19 @@
 # u-na
+
 > u-na:一个基于微服务架构的前后端分离的寄托希望梦想的内容分享系统.
 
-## Star and Fork
+## 1.0 Star and Fork
+
 `u-na: u-na:一个基于微服务架构的前后端分离的寄托希望梦想的内容分享系统.`
+
 > https://gitee.com/ahviplc/u-na
 
-`ahviplc/u-na: u-na:一个基于微服务架构的前后端分离的寄托希望梦想的内容分享系统.`
+`ahviplc/u-na:u-na:一个基于微服务架构的前后端分离的寄托希望梦想的内容分享系统.`
+
 > https://github.com/ahviplc/u-na
 
-## 技术栈
+## 2.0 技术栈
+
 ```markdown
 springboot
 maven
@@ -26,9 +31,9 @@ git
 未完待续...
 ```
 
-## 搭建项目运行环境
+## 3.0 搭建项目运行环境
 
-### aliyun
+### 3.1 aliyun
 
 > 使用 lj-linux
 
@@ -48,7 +53,7 @@ sentinel 8748
 pass
 ```
 
-### docker
+### 3.2 docker
 
 #### 安装Docker Compose
 
@@ -62,15 +67,20 @@ pass
 docker-compose --version
 ```
 
-### nacos
+### 3.4 nacos
+
 `作为注册中心和配置中心`
 
-#### 使用docker部署nacos
+#### 3.4.1 使用docker部署nacos
+
 `使用docker部署nacos`
+
 > https://www.cnblogs.com/jeecg158/p/14029453.html
 
-#### 安装nacos
+#### 3.4.2 安装nacos
+
 `具体安装nacos`
+
 > https://www.cnblogs.com/jeecg158/p/14029453.html
 
 ```markdown
@@ -84,28 +94,36 @@ docker-compose --version
    默认用户名密码都是： nacos
 7. done.
 ```
-#### 手动下载安装运行nacos
+
+#### 3.4.3 手动下载安装运行nacos
+
 `从github下载,启动也可`
+
 > https://github.com/alibaba/nacos/releases
 
 `下载完 导入 对应 nacos-config 数据库并配置 然后以下执行命令 单机模式启动`
+
 > .\startup.cmd -m standalone
 
-### sentinel
+### 3.5 sentinel
+
 `作为熔断器`
 
-`从github下载`						
+`从github下载`
 
 > https://github.com/alibaba/Sentinel/releases
 
 `下载完 启动 需在 git bash 命令窗口下执行 端口8748`
 
-> java -Dserver.port=8748 -Dcsp.sentinel.dashboard.server=localhost:8748 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard-1.8.1.jar
+> java -Dserver.port=8748 -Dcsp.sentinel.dashboard.server=localhost:8748
+> -Dproject.name=sentinel-dashboard -jar sentinel-dashboard-1.8.1.jar
 
 `默认使用8080端口`
+
 > java -jar .\sentinel-dashboard-1.8.1.jar
 
 `una-consumer应用名,服务的/hi-feign接口，增加一个流控规则`
+
 ```markdown
 在 `GET:http://una-provider/hi` 点击 +流控 按钮
 
@@ -123,7 +141,7 @@ Blocked by Sentinel: FlowException
 可见gateway上的sentinel的配置已经生效.
 ```
 
-### Spring Cloud Sleuth+zipkin
+### 3.6 Spring Cloud Sleuth+zipkin
 
 `实现链路追踪`
 
@@ -136,34 +154,42 @@ java -jar zipkin.jar
 
 `访问zipkin的ui 界面，地址为localhost:9411`
 
-## 搭建项目代码
+## 4.0 搭建项目代码
 
 `代码构建`
 
-## 访问我
+## 5.0 访问我
+
 `下面是此项目的一些访问链接`
 
 `nacos` `账户密码都是nacos`
+
 > http://localhost:8848/nacos/index.html#/login
 
 `远程调用`
+
 > http://localhost:8763/hi-feign
 
 `直接调用`
+
 > http://localhost:8762/hi?name=ahviplc
 
 `引入网关gateway调用`
+
 > http://localhost:5000/consumer/hi-feign
 
 > http://localhost:5000/provider/hi?name=shviplc
 
 `引入Sentinel作为熔断器` `账户密码都是sentinel`
+
 > http://localhost:8748
 
 `访问zipkin的ui界面`
+
 > http://localhost:9411
 
-## 参考资料
+## 6.0 参考资料
+
 ```markdown
 Install Docker Compose | Docker Documentation
 https://docs.docker.com/compose/install/
@@ -232,10 +258,11 @@ spring中 allowBeanDefinitionOverriding(spring.main.allow-bean-definition-overri
 https://blog.csdn.net/liubenlong007/article/details/87885567
 ```
 
-## 其他
+## 7.0 其他
 
-### 其他
+### 7.1 其他
 
-## 未完待续
+## 8.0 未完待续
 
 > pass
+
