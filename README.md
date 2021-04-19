@@ -158,6 +158,24 @@ java -jar zipkin.jar
 
 `代码构建`
 
+### 4.1 引入日志
+
+`@Slf4j`
+
+`配合使用 hutool 的 StaticLog`
+
+`日志文件配置参考`
+
+> una-consumer/src/main/resources/logback-spring.xml
+
+`会对应产生以下目录和日志文件`
+
+```markdown
+u-na/logs/una-consumer
+u-na/logs/una-consumer/una-consumer-error.log
+u-na/logs/una-consumer/una-consumer-info.log
+```
+
 ## 5.0 访问我
 
 `下面是此项目的一些访问链接`
@@ -259,6 +277,18 @@ https://blog.csdn.net/liubenlong007/article/details/87885567
 
 在线yaml转properties-在线properties转yaml-ToYaml.com
 https://www.toyaml.com/index.html
+
+Maven实战（六）--- dependencies与dependencyManagement的区别_信息技术提高班第九期-CSDN博客
+https://blog.csdn.net/liutengteng130/article/details/46991829
+
+SLF4J Documentation
+http://www.slf4j.org/docs.html
+
+hutool-log/src/test/java/cn/hutool/log/test/StaticLogTest.java · dromara/hutool - 码云 - 开源中国
+https://gitee.com/dromara/hutool/blob/v5-master/hutool-log/src/test/java/cn/hutool/log/test/StaticLogTest.java
+
+mogu_picture/src/main/resources/logback-spring.xml · 陌溪/蘑菇博客 - Gitee.com
+https://gitee.com/moxi159753/mogu_blog_v2/blob/Nacos/mogu_picture/src/main/resources/logback-spring.xml
 ```
 
 ## 7.0 其他

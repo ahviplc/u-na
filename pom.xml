@@ -20,6 +20,8 @@
         <spring-boot.version>2.4.5</spring-boot.version>
         <spring-cloud.version>2020.0.2</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+        <!--其他三方依赖版本-->
+        <hutool.version>5.6.3</hutool.version>
     </properties>
 
     <modules>
@@ -57,6 +59,15 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <!--其他三方依赖-->
+        <!--Hutool是一个小而全的Java工具类库-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
