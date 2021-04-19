@@ -25,6 +25,17 @@
     </properties>
 
     <dependencies>
+        <!--Spring Cloud Sleuth+zipkin实现链路追踪-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        </dependency>
+
         <!--必须引入starter-web才能注册到nacos中去-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

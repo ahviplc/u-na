@@ -245,8 +245,8 @@ https://github.com/alibaba/Sentinel/releases
 SpringCloud 2020版本教程4：使用spring cloud sleuth+zipkin实现链路追踪 - 方志朋的博客
 https://www.fangzhipeng.com/springcloud/2021/04/05/sc-2020-sleuth.html
 
-SpringCloud 2020版本教程4：使用spring cloud sleuth+zipkin实现链路追踪 - 方志朋的博客
-https://www.fangzhipeng.com/springcloud/2021/04/05/sc-2020-sleuth.html
+SpringCloudLearning/sc-2020-chapter4 at master · forezp/SpringCloudLearning · GitHub
+https://github.com/forezp/SpringCloudLearning/tree/master/sc-2020-chapter4
 
 Sentinel · alibaba/spring-cloud-alibaba Wiki
 https://github.com/alibaba/spring-cloud-alibaba/wiki/Sentinel
@@ -256,6 +256,9 @@ https://github.com/alibaba/Sentinel/wiki/%E7%BD%91%E5%85%B3%E9%99%90%E6%B5%81
 
 spring中 allowBeanDefinitionOverriding(spring.main.allow-bean-definition-overriding)
 https://blog.csdn.net/liubenlong007/article/details/87885567
+
+在线yaml转properties-在线properties转yaml-ToYaml.com
+https://www.toyaml.com/index.html
 ```
 
 ## 7.0 其他

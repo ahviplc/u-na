@@ -21,3 +21,15 @@ spring:
         group: prod
         #指定命名空间
         namespace: prod
+
+  # Spring Cloud Sleuth+zipkin实现链路追踪
+  sleuth:
+    sampler:
+      # 设置采样率默认为 0.1 注意之前的版本是percentage 新版本中更换为 probability
+      probability: 1
+  zipkin:
+    base-url: http://localhost:9411/
+    sender:
+      type: web
+    service:
+      name: una-provider
