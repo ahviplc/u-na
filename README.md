@@ -55,7 +55,7 @@ pass
 
 ### 3.2 docker
 
-#### 安装Docker Compose
+#### 3.2.1 安装Docker Compose
 
 > https://docs.docker.com/compose/install/
 
@@ -67,17 +67,17 @@ pass
 docker-compose --version
 ```
 
-### 3.4 nacos
+### 3.3 nacos
 
 `作为注册中心和配置中心`
 
-#### 3.4.1 使用docker部署nacos
+#### 3.3.1 使用docker部署nacos
 
 `使用docker部署nacos`
 
 > https://www.cnblogs.com/jeecg158/p/14029453.html
 
-#### 3.4.2 安装nacos
+#### 3.3.2 安装nacos
 
 `具体安装nacos`
 
@@ -95,7 +95,7 @@ docker-compose --version
 7. done.
 ```
 
-#### 3.4.3 手动下载安装运行nacos
+#### 3.3.3 手动下载安装运行nacos
 
 `从github下载,启动也可`
 
@@ -105,7 +105,7 @@ docker-compose --version
 
 > .\startup.cmd -m standalone
 
-### 3.5 sentinel
+### 3.4 sentinel
 
 `作为熔断器`
 
@@ -141,7 +141,7 @@ Blocked by Sentinel: FlowException
 可见gateway上的sentinel的配置已经生效.
 ```
 
-### 3.6 Spring Cloud Sleuth+zipkin
+### 3.5 Spring Cloud Sleuth+zipkin
 
 `实现链路追踪`
 
