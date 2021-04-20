@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.lc</groupId>
         <artifactId>u-na</artifactId>
-        <version>1.0</version>
+        <version>1.0.0</version>
     </parent>
     <!--Definition of groupId is redundant, because it's inherited from the parent-->
     <!--下面groupId的定义是多余的，因为它是从父级继承的-->
@@ -14,7 +14,7 @@
     <version>${parent.version}</version>
     <name>una-consumer</name>
     <packaging>jar</packaging>
-    <description>una-consumer:一个最简单的分布式服务消费者</description>
+    <description>una-consumer:一个最简单的分布式服务消费者模块</description>
 
     <properties>
         <java.version>1.8</java.version>

@@ -1,6 +1,7 @@
 package com.lc.una.provider.controller;
 
 import cn.hutool.log.StaticLog;
+import com.lc.una.utils.DateUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,5 +26,11 @@ public class providerController {
 		StaticLog.info("...providerController...hi...");
 		StaticLog.error("...providerController...hi...{}...", "假装error了");
 		return "hello " + name + ", i'm provider ,my port:" + port + " whichActive:" + whichActive;
+	}
+
+	@ApiOperation(value = "nowTime", notes = "nowTime-当前时间")
+	@GetMapping("/nowTime")
+	public String nowTime() {
+		return DateUtils.formateDate(DateUtils.getNowDate(), DateUtils.YYYY_MM_DD_HH_MM_SS);
 	}
 }

@@ -1,9 +1,7 @@
 package com.lc.una.consumer;
 
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 
 import java.util.Properties;
 import java.util.concurrent.Executor;
@@ -60,8 +58,5 @@ class ConsumerApplicationTests {
 		content = configService.getConfig(dataId, group, 5000);
 		System.out.println(content);
 		Thread.sleep(300000);
-
-
 	}
-
 }

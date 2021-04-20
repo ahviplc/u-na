@@ -188,6 +188,10 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 `要是某些模块增加swagger密码访问的权限,需要输入用户名和密码,默认都是:` `admin`
 
+### 4.3 引入工具类模块
+
+`una-utils:常用工具类模块`
+
 ## 5.0 访问我
 
 `下面是此项目的一些访问链接`
@@ -196,19 +200,27 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 > http://localhost:8848/nacos/index.html#/login
 
-`远程调用`
+`远程调用` `服务消费者模块una-consumer`
 
 > http://localhost:8763/hi-feign
 
-`直接调用`
+`直接调用` `服务提供者模块una-provider`
 
 > http://localhost:8762/hi?name=ahviplc
 
-`引入网关gateway调用`
+> http://localhost:8762/nowTime
+
+`引入网关gateway调用` `网关端口5000`
+
+`服务消费者模块una-consumer`
 
 > http://localhost:5000/consumer/hi-feign
 
+`服务提供者模块una-provider`
+
 > http://localhost:5000/provider/hi?name=shviplc
+
+> http://localhost:5000/provider/nowTime
 
 `引入Sentinel作为熔断器` `账户密码都是sentinel`
 
@@ -311,6 +323,12 @@ https://blog.csdn.net/qq_43578385/article/details/111865228
 
 knife4j: knife4j是为Java MVC框架集成Swagger生成Api文档的工具,前身是swagger-bootstrap-ui
 https://gitee.com/xiaoym/knife4j
+
+mogu_utils · 陌溪/蘑菇博客 - 码云 - 开源中国
+https://gitee.com/moxi159753/mogu_blog_v2/tree/Nacos/mogu_utils
+
+Intellij IDEA运行报Command line is too long的解决办法 - SegmentFault 思否
+https://segmentfault.com/a/1190000022547084
 ```
 
 ## 7.0 其他
@@ -361,6 +379,6 @@ spring:
 ```markdown
 By LC
 寄语:一人一世界,一树一菩提!~LC
-Version 1.0 From 202104
+Version 1.0.0 From 202104
 ```
 

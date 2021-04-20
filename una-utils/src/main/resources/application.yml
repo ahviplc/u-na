@@ -1,0 +1,21 @@
+# una-utils:常用工具类
+# 此una-utils:常用工具类 只是工具类模块 不可放开下面配置
+# u-na 整体打包时 其他引入此模块的模块打包 不注释掉下面 会报错 【比如 una-provider 模块的pom.xml里引入了 una-utils 打包会报 java: 程序包com.lc.una.utils不存在】
+# 会报【Could not find artifact com.lc:una-utils:pom:1.0.0 in aliyun-maven (https://maven.aliyun.com/repository/public)】
+# 从 una-utils/pom.xml:233 这行开始,注释掉了
+# 注释之后 当然 u-na 整体打包时【mvn package -X】就都 ok 了
+# 注释之后 引入此 una-utils 的 una-provider 其他引入此模块的模块打包 还是有问题
+#【Failed to execute goal on project una-provider: Could not resolve dependencies for project com.lc:una-provider:jar:1.0.0: Failure to find com.lc:una-utils:jar:1.0.0 in https://maven.aliyun.com/repository/public was cached in the local repository】
+# 可无视 毕竟打包时 是 u-na 整体打包
+# 但是
+# 此 una-utils 模块单独打包时【mvn package -X】
+# 注释之后 这样执行【java -jar una-utils-1.0.0.jar】 会报【una-utils-1.0.0.jar中没有主清单属性】)
+# 放开注释之后
+# 其打出 una-utils 模块的jar包 就是可执行的 【java -jar una-utils-1.0.0.jar】
+# 可通过端口 114 访问其服务接口.
+server:
+  port: 114 # 寓意着哪里需要哪里搬,一按我帮你
+
+spring:
+  application:
+    name: una-utils
