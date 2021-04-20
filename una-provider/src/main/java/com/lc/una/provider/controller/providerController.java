@@ -1,11 +1,14 @@
 package com.lc.una.provider.controller;
 
 import cn.hutool.log.StaticLog;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(value = "简单服务提供者模块", tags = "简单服务提供者模块")
 @RestController
 public class providerController {
 
@@ -14,6 +17,7 @@ public class providerController {
 	@Value("${spring.cloud.nacos.discovery.namespace}")
 	String whichActive;
 
+	@ApiOperation(value = "hi", notes = "hi")
 	@GetMapping("/hi")
 	public String hi(@RequestParam(value = "name", defaultValue = "LC", required = false) String name) {
 		System.out.println("...providerController...hi...");

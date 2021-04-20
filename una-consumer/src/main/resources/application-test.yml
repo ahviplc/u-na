@@ -42,3 +42,15 @@ spring:
 feign:
   sentinel:
     enabled: true
+
+#==============================knife4j配置=======================================
+knife4j:
+  # 开启增强配置
+  enable: true
+  basic:
+    enable: true
+    # 配置文件的作用是增加swagger密码访问的权限 访问查看此模块接口 需要输入下面用户名和密码
+    # Basic认证用户名
+    username: admin
+    # Basic认证密码
+    password: admin

@@ -176,6 +176,18 @@ u-na/logs/una-consumer/una-consumer-error.log
 u-na/logs/una-consumer/una-consumer-info.log
 ```
 
+### 4.2 引入knife4j
+
+> knife4j 集成Swagger生成Api文档的增强解决方案
+
+`进行相关配置之后,访问 ip + 网关模块端口5000 + doc.html`
+
+`ip:port/doc.html`
+
+> http://localhost:5000/doc.html
+
+`要是某些模块增加swagger密码访问的权限,需要输入用户名和密码,默认都是:` `admin`
+
 ## 5.0 访问我
 
 `下面是此项目的一些访问链接`
@@ -205,6 +217,10 @@ u-na/logs/una-consumer/una-consumer-info.log
 `访问zipkin的ui界面`
 
 > http://localhost:9411
+
+`访问una的Api接口文档`
+
+> http://localhost:5000/doc.html
 
 ## 6.0 参考资料
 
@@ -289,13 +305,59 @@ https://gitee.com/dromara/hutool/blob/v5-master/hutool-log/src/test/java/cn/huto
 
 mogu_picture/src/main/resources/logback-spring.xml · 陌溪/蘑菇博客 - Gitee.com
 https://gitee.com/moxi159753/mogu_blog_v2/blob/Nacos/mogu_picture/src/main/resources/logback-spring.xml
+
+gateway-nacos-knife4j整合加访问权限控制(详细教程适合新手入门)_FREE_GIFT_白给怪的博客-CSDN博客
+https://blog.csdn.net/qq_43578385/article/details/111865228
 ```
 
 ## 7.0 其他
 
-### 7.1 其他
+### 7.1 扩展知识点
 
-## 8.0 未完待续
+#### 7.1.1 spring cloud gateway 配置项的那些事
 
-> pass
+```yaml
+spring:
+  application:
+    name: una-gateway
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 127.0.0.1:8848
+        service: una-gateway
+        namespace: dev
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+        # 指定分组
+        group: dev
+        # 指定命名空间
+        namespace: dev
+    gateway:
+      discovery:
+        locator:
+          enabled: false # 让gateway可以发现nacos中的微服务 开启后会自动去掉一层路径,且routes会失效
+                         # 如果完全注释routes,knife4j会失效
+      routes: # 路由数组  指当请求满足什么样的条件的时候，转发到哪个微服务上
+        - id: una-provider # 当前路由标识，要求唯一 （默认值uuid，一般不用，需要自定义）
+          uri: lb://una-provider # 请求最终要被转发的地址   lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+          predicates: # 断言 判断条件，返回值是boolean 转发请求要返回的条件 （可以写多个）
+            - Path=/una-provider/** # 当请求路径满足path指定的规则时，此路由信息才会正常转发
+          filters: # 过滤器（在请求传递过程中，对请求做一些手脚）
+            - StripPrefix=1 # 在请求转发之前去掉一层路径
+```
+
+#### 7.1.2 其他知识点
+
+### 7.2 其他项
+
+## 8.0 about me
+
+```markdown
+By LC
+寄语:一人一世界,一树一菩提!~LC
+Version 1.0 From 202104
+```
 
