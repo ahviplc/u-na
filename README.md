@@ -308,6 +308,9 @@ https://gitee.com/moxi159753/mogu_blog_v2/blob/Nacos/mogu_picture/src/main/resou
 
 gateway-nacos-knife4j整合加访问权限控制(详细教程适合新手入门)_FREE_GIFT_白给怪的博客-CSDN博客
 https://blog.csdn.net/qq_43578385/article/details/111865228
+
+knife4j: knife4j是为Java MVC框架集成Swagger生成Api文档的工具,前身是swagger-bootstrap-ui
+https://gitee.com/xiaoym/knife4j
 ```
 
 ## 7.0 其他
