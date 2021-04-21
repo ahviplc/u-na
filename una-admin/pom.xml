@@ -25,6 +25,13 @@
     </properties>
 
     <dependencies>
+        <!--引入una-utils常用工具类模块-->
+        <dependency>
+            <artifactId>una-utils</artifactId>
+            <groupId>com.lc</groupId>
+            <version>1.0.0</version>
+        </dependency>
+
         <!--knife4j micro-->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
