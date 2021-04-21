@@ -1,0 +1,14 @@
+${AnsiColor.BLACK}
+
+.------..------..------..------.
+|U.--. ||-.--. ||N.--. ||A.--. |
+| (\/) || (\/) || :(): || (\/) |
+| :\/: || :\/: || ()() || :\/: |
+| '--'U|| '--'-|| '--'N|| '--'A|
+`------'`------'`------'`------'
+
+${AnsiColor.YELLOW}
+Gitee: https://gitee.com/ahviplc/u-na
+${AnsiColor.GREEN}
+Github: https://github.com/ahviplc/u-na
+${AnsiColor.BRIGHT_BLACK}
