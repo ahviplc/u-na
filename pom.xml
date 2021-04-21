@@ -52,6 +52,7 @@
         <module>una-provider</module>
         <module>una-consumer</module>
         <module>una-gateway</module>
+        <module>una-admin</module>
     </modules>
 
     <dependencyManagement>

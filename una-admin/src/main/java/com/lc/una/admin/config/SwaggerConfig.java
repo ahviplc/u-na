@@ -1,4 +1,4 @@
-package com.lc.una.consumer.config;
+package com.lc.una.admin.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,13 +14,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 import java.util.ArrayList;
 
 /**
- * una-consumer 的 SwaggerConfig
+ * una-admin 的 SwaggerConfig
  * <p>
  * ip:port/doc.html 即【http://localhost:5000/doc.html】
  * 账号密码即见配置文件
  *
  * @author LC
- * @date 2021年4月20日10:09:10
+ * @date 2021年4月20日11:26:02
  */
 @Configuration
 @EnableSwagger2WebMvc
@@ -33,7 +33,7 @@ public class SwaggerConfig {
 				.apiInfo(apiInfo())
 				.select()
 				//注意basePackage改成自己每个项目的路径
-				.apis(RequestHandlerSelectors.basePackage("com.lc.una.consumer"))
+				.apis(RequestHandlerSelectors.basePackage("com.lc.una.admin"))
 				.paths(PathSelectors.any())
 				.build();
 	}

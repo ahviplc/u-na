@@ -48,6 +48,18 @@ nacos 8848
 redis 6379
 gateway 5000
 sentinel 8748
+zipkin 9411
+
+`una所有组件所有模块端口`
+mysql 3360
+nacos 8848
+sentinel 8748
+zipkin 9411
+una-utils 114
+una-gateway 5000
+una-provider 8762
+una-consumer 8763
+una-admin 8090
 
 其他端口
 pass
@@ -240,7 +252,17 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 > http://localhost:5000/provider/nowTime
 
-`引入Sentinel作为熔断器` `账户密码都是sentinel`
+`后端admin模块`
+
+`不使用网关` `端口8090`
+
+> http://localhost:8090/admin/getList
+
+`使用网关` `网关端口5000` `具体访问路径取决于una-gateway网关配置`
+
+> http://localhost:5000/una-admin/admin/getList
+
+`引入Sentinel作为熔断器` `账户密码都是sentinel` `只有网关una-gateway模块和简单消费者una-consumer模块配置了`
 
 > http://localhost:8748
 
@@ -347,6 +369,9 @@ https://gitee.com/moxi159753/mogu_blog_v2/tree/Nacos/mogu_utils
 
 Intellij IDEA运行报Command line is too long的解决办法 - SegmentFault 思否
 https://segmentfault.com/a/1190000022547084
+
+gateway-route-filters | Spring Cloud Gateway
+https://cloud.spring.io/spring-cloud-gateway/2.0.x/single/spring-cloud-gateway.html#gateway-route-filters
 ```
 
 ## 7.0 其他
@@ -379,6 +404,10 @@ spring:
         locator:
           enabled: false # 让gateway可以发现nacos中的微服务 开启后会自动去掉一层路径,且routes会失效
                          # 如果完全注释routes,knife4j会失效
+                         # 是否与服务注册于发现组件进行结合，通过 serviceId 转发到具体的服务实例。
+                         # 默认为 false，设为 true 便开启通过服务中心的自动根据 serviceId 创建路由的功能
+          # 表示将请求路径的服务名配置改成小写  因为服务注册的时候，向注册中心注册时将服务名转成大写的了
+          lowerCaseServiceId: true
       routes: # 路由数组  指当请求满足什么样的条件的时候，转发到哪个微服务上
         - id: una-provider # 当前路由标识，要求唯一 （默认值uuid，一般不用，需要自定义）
           uri: lb://una-provider # 请求最终要被转发的地址   lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略

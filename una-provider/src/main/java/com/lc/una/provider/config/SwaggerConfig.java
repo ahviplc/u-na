@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 import java.util.ArrayList;
 
 /**
- * una-provider的SwaggerConfig
+ * una-provider 的 SwaggerConfig
  * <p>
  * ip:port/doc.html 即【http://localhost:5000/doc.html】
  * 账号密码即见配置文件

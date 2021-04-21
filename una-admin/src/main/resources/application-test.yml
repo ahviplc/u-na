@@ -1,0 +1,47 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: una-admin
+
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+
+      discovery:
+        server-addr: localhost:8848
+        service: una-admin
+        namespace: test
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+        #指定分组
+        group: test
+        #指定命名空间
+        namespace: test
+
+  # Spring Cloud Sleuth+zipkin实现链路追踪
+  sleuth:
+    sampler:
+      # 设置采样率默认为 0.1 注意之前的版本是percentage 新版本中更换为 probability
+      probability: 1
+  zipkin:
+    base-url: http://localhost:9411/
+    sender:
+      type: web
+    service:
+      name: una-admin
+
+#==============================knife4j配置=======================================
+knife4j:
+  # 开启增强配置
+  enable: true
+  basic:
+    enable: true
+    # 配置文件的作用是增加swagger密码访问的权限 访问查看此模块接口 需要输入下面用户名和密码
+    # Basic认证用户名
+    username: admin
+    # Basic认证密码
+    password: admin

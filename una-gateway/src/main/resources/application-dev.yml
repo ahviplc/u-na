@@ -20,9 +20,22 @@ spring:
         # 指定命名空间
         namespace: dev
     gateway:
+      globalcors:
+        # gateway 跨域设置
+        cors-configurations:
+          '[/**]':
+            # allowedOrigins: "*"
+            allowedOriginPatterns: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - OPTIONS
       discovery:
         locator:
-          enabled: false
+          enabled: true
           lowerCaseServiceId: true
       routes:
         # 采用自定义路由 ID（有固定用法，不同的 id 有不同的功能，详见：https://cloud.spring.io/spring-cloud-gateway/2.0.x/single/spring-cloud-gateway.html#gateway-route-filters）
@@ -40,6 +53,13 @@ spring:
             - Path=/consumer/**
           filters:
             - StripPrefix=1
+        - id: una-admin
+          uri: lb://una-admin
+          predicates:
+            - Path=/una-admin/**
+          filters:
+            - StripPrefix=1
+
     # 引入熔断器 sentinel
     sentinel:
       transport:
