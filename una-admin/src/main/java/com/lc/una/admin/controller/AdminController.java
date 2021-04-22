@@ -1,19 +1,18 @@
 package com.lc.una.admin.controller;
 
 import cn.hutool.log.StaticLog;
-import com.lc.una.utils.ResultUtil;
+import com.lc.una.admin.service.AdminService;
+import com.lc.una.utils.tools.ResultUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * 管理员表
+ * 管理员表 控制层 AdminController
  *
  * @author LC
  * @date 2021年4月21日16:38:22
@@ -23,14 +22,25 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
+	@Autowired
+	private AdminService adminService;
+
 	@ApiOperation(value = "获取管理员列表", notes = "获取管理员列表")
 	@GetMapping("/getList")
-	public String getList(@RequestParam(value = "name", defaultValue = "LC", required = false) String name) {
-		StaticLog.info("...getList...获取管理员列表...");
-		List<String> userList = new ArrayList<String>();
-		for (int i = 0; i < 10; i++) {
-			userList.add("user-" + i);
-		}
-		return ResultUtil.successWithDataAndMessage( userList, "...getList...获取管理员列表...");
+	public String getList() {
+		StaticLog.info("...getList...获取全部管理员列表...");
+		return ResultUtil.successWithDataAndMessage(adminService.getList(), "获取全部管理员列表");
+	}
+
+	@ApiOperation(value = "通过uid获取管理员", notes = "通过uid获取管理员")
+	@GetMapping("/getAdminByUid")
+	public String getAdminByUid(@RequestParam(value = "uid", defaultValue = "1", required = true) String uid) {
+		return ResultUtil.successWithDataAndMessage(adminService.getAdminByUid(uid), "通过uid获取管理员");
+	}
+
+	@ApiOperation(value = "新增管理员", notes = "新增管理员")
+	@GetMapping("/add")
+	public String add() {
+		return adminService.addAdmin();
 	}
 }

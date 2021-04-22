@@ -72,6 +72,24 @@
     </dependencies>
 
     <build>
+        <!--只有如下配置，才能在编译的时候把java目录中的xml文件带进去 主要针对mybatis-plus的mapper.xml文件-->
+        <finalName>una-admin</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**.*</include>
+                    <include>**/*.*</include><!-- i18n能读取到 -->
+                    <include>**/*/*.*</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

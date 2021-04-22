@@ -1,7 +1,7 @@
 package com.lc.una.provider.controller;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.log.StaticLog;
-import com.lc.una.utils.DateUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +31,6 @@ public class providerController {
 	@ApiOperation(value = "nowTime", notes = "nowTime-当前时间")
 	@GetMapping("/nowTime")
 	public String nowTime() {
-		return DateUtils.formateDate(DateUtils.getNowDate(), DateUtils.YYYY_MM_DD_HH_MM_SS);
+		return DateUtil.now();
 	}
 }

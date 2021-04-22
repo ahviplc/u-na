@@ -262,7 +262,8 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 > http://localhost:5000/una-admin/admin/getList
 
-`引入Sentinel作为熔断器` `账户密码都是sentinel` `只有网关una-gateway模块和简单消费者una-consumer模块配置了`
+`引入Sentinel作为熔断器` `账户密码都是sentinel`
+`只有网关una-gateway模块和简单消费者una-consumer模块配置了`
 
 > http://localhost:8748
 
@@ -372,6 +373,24 @@ https://segmentfault.com/a/1190000022547084
 
 gateway-route-filters | Spring Cloud Gateway
 https://cloud.spring.io/spring-cloud-gateway/2.0.x/single/spring-cloud-gateway.html#gateway-route-filters
+
+MyBatis-Plus
+https://mp.baomidou.com/
+
+GitHub - baomidou/mybatis-plus: An powerful enhanced toolkit of MyBatis for simplify development
+https://github.com/baomidou/mybatis-plus
+
+MybatisX 快速开发插件 | MyBatis-Plus
+https://mp.baomidou.com/guide/mybatisx-idea-plugin.html
+
+MybatisX: MybatisX 快速开发插件
+https://gitee.com/baomidou/MybatisX
+
+MyBatis-Plus 使用xml文件 - 枫树湾河桥 - 博客园
+https://www.cnblogs.com/fswhq/p/13634195.html
+
+配置mybatis-plus的xml遇到的坑_humorrr的博客-CSDN博客
+https://blog.csdn.net/qq_36561105/article/details/109034284
 ```
 
 ## 7.0 其他
@@ -420,6 +439,16 @@ spring:
 #### 7.1.2 其他知识点
 
 ### 7.2 其他项
+
+```markdown
+@ComponentScan(basePackages = {
+		"com.lc.una.utils.commons",
+		"com.lc.una.utils",
+		"com.lc.una.admin",
+		"com.lc.una.utils.xo",
+		"com.lc.una.utils.xo.mapper"
+})
+```
 
 ## 8.0 about me
 

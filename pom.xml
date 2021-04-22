@@ -24,6 +24,8 @@
         <hutool.version>5.6.3</hutool.version>
         <knife4j.version>2.0.8</knife4j.version>
         <lombok.version>1.18.20</lombok.version>
+        <mysql.version>8.0.24</mysql.version>
+        <mybatis.plus.boot.starter.version>3.4.2</mybatis.plus.boot.starter.version>
         <dyuproject.version>1.1.5</dyuproject.version>
         <alibaba.fastjson.version>1.2.31</alibaba.fastjson.version>
         <jackson.mapper.asl.version>1.9.13</jackson.mapper.asl.version>
@@ -42,7 +44,6 @@
         <bcpkix.version>1.60</bcpkix.version>
         <aspectjrt.version>1.9.6</aspectjrt.version>
         <starter.data.redis.version>2.2.2.RELEASE</starter.data.redis.version>
-        <mybatis.plus.boot.starter.version>3.1.2</mybatis.plus.boot.starter.version>
         <jaxb.version>2.3.0</jaxb.version>
         <activation.version>1.1.1</activation.version>
     </properties>
