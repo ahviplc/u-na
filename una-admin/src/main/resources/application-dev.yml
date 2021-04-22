@@ -38,9 +38,9 @@ spring:
   # mysql数据库连接配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://106.14.212.65:3306/u-na?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://##.14.##.65:3306/u-na?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
     username: root
-    password: ljroot
+    password: ###
   # ======================================================================mysql end
 
 #==============================knife4j配置=======================================

@@ -16,20 +16,19 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 // 这个【@MapperScan】注解，作用相当于下面的@Bean MapperScannerConfigurer
-// @MapperScan("com.lc.una.utils.xo.mapper*")
-// 在使用的地方 二者配置其一即可
+// @MapperScan("com.lc.una.utils.xo.mapper")
+// 二者配置其一即可
 public class MybatisPlusConfig {
 
 	/**
 	 * 相当于顶部的：
 	 * {@code @MapperScan("com.lc.una.utils.xo.mapper")}
-	 * {@code @MapperScan("com.lc.una.utils.xo.mapper*")}
 	 * 这里可以扩展，比如使用配置文件来配置扫描Mapper的路径
 	 */
 	@Bean
 	public MapperScannerConfigurer mapperScannerConfigurer() {
 		MapperScannerConfigurer scannerConfigurer = new MapperScannerConfigurer();
-		scannerConfigurer.setBasePackage("com.lc.una.utils.xo.mapper*");
+		scannerConfigurer.setBasePackage("com.lc.una.utils.xo.mapper");
 		return scannerConfigurer;
 	}
 
