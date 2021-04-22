@@ -36,6 +36,20 @@
             </exclusions> -->
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--mp依赖-mybatisPlus 会自动的维护Mybatis 以及MyBatis-spring相关的依赖-->
+        <!--现在还没有实际引入数据库 先隐掉-->
+        <!--<dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis.plus.boot.starter.version}</version>
+        </dependency>-->
+
         <!--三方依赖-->
         <!-- https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-core -->
         <!--序列化相关-->
@@ -64,29 +78,18 @@
             <version>${jackson.mapper.asl.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
         <!-- email -->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>${javax.mail.version}</version>
+            <!--这个javax.activation 版本 1.1.1 我自己单独引入了-->
+            <exclusions>
+                <exclusion>
+                    <artifactId>activation</artifactId>
+                    <groupId>javax.activation</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- 引入Json相关 -->
@@ -95,6 +98,12 @@
             <artifactId>json-lib</artifactId>
             <version>${net.sf.json.lib.version}</version>
             <classifier>jdk15</classifier>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-lang</artifactId>
+                    <groupId>commons-lang</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--引入gson-->
@@ -116,6 +125,12 @@
             <groupId>com.vladsch.flexmark</groupId>
             <artifactId>flexmark-all</artifactId>
             <version>${flexmark.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--通过ip获取城市信息-->
@@ -139,6 +154,7 @@
             <version>${HikariCP.version}</version>
         </dependency>
 
+        <!--jjwt里面包含 jackson-databind 2.8.2 版本-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
@@ -188,14 +204,6 @@
             <version>${starter.data.redis.version}</version>
         </dependency>
 
-        <!--mp依赖-mybatisPlus 会自动的维护Mybatis 以及MyBatis-spring相关的依赖-->
-        <!--现在还没有实际引入数据库 先隐掉-->
-        <!--<dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis.plus.boot.starter.version}</version>
-        </dependency>-->
-
         <!-- 高版本Java(jdk14)需要 -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -220,43 +228,37 @@
             <artifactId>activation</artifactId>
             <version>${activation.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
-<!--其他引入此模块的模块打包 不注释掉下面 会报错-->
-<!--此una-utils:常用工具类 只是工具类模块 不可放开下面配置-->
-<!--    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    &lt;!&ndash; 指定该Main Class为全局的唯一入口 &ndash;&gt;
-                    <mainClass>com.lc.una.utils.UtilsApplication</mainClass>
-                    <layout>ZIP</layout>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>&lt;!&ndash;可以把依赖的包都打包到生成的Jar包中&ndash;&gt;
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>-->
+    <!--其他引入此模块的模块打包 不注释掉下面 会报错-->
+    <!--此una-utils:常用工具类 只是工具类模块 不可放开下面配置-->
+    <!--    <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        &lt;!&ndash; 指定该Main Class为全局的唯一入口 &ndash;&gt;
+                        <mainClass>com.lc.una.utils.UtilsApplication</mainClass>
+                        <layout>ZIP</layout>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>&lt;!&ndash;可以把依赖的包都打包到生成的Jar包中&ndash;&gt;
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>8</source>
+                        <target>8</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>-->
 
 </project>
