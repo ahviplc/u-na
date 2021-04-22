@@ -34,6 +34,15 @@ spring:
     service:
       name: una-admin
 
+  # ======================================================================mysql begin 要想切换到mysql配置 只需在 begin end中所有选择 ctrl+/即可
+  # mysql数据库连接配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.14.212.65:3306/u-na?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: ljroot
+  # ======================================================================mysql end
+
 #==============================knife4j配置=======================================
 knife4j:
   # 开启增强配置

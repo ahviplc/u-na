@@ -42,13 +42,20 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+            <version>${mysql.version}</version>
+        </dependency>
+
         <!--mp依赖-mybatisPlus 会自动的维护Mybatis 以及MyBatis-spring相关的依赖-->
         <!--现在还没有实际引入数据库 先隐掉-->
-        <!--<dependency>
+        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis.plus.boot.starter.version}</version>
-        </dependency>-->
+        </dependency>
 
         <!--三方依赖-->
         <!-- https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-core -->
@@ -239,7 +246,7 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
                         &lt;!&ndash; 指定该Main Class为全局的唯一入口 &ndash;&gt;
-                        <mainClass>com.lc.una.utils.UtilsApplication</mainClass>
+                        <mainClass>com.lc.una.utils.tools.UtilsApplication</mainClass>
                         <layout>ZIP</layout>
                     </configuration>
                     <executions>
