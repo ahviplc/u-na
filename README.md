@@ -391,6 +391,9 @@ https://www.cnblogs.com/fswhq/p/13634195.html
 
 配置mybatis-plus的xml遇到的坑_humorrr的博客-CSDN博客
 https://blog.csdn.net/qq_36561105/article/details/109034284
+
+java中XO -> PO(entity) VO BO DTO DAO POJO DO 概念-CSDN博客
+https://blog.csdn.net/qq_44801116/article/details/105211678
 ```
 
 ## 7.0 其他
@@ -442,15 +445,27 @@ spring:
 
 ```markdown
 @ComponentScan(basePackages = {
-		"com.lc.una.utils.commons",
 		"com.lc.una.utils",
 		"com.lc.una.admin",
-		"com.lc.una.utils.xo",
-		"com.lc.una.utils.xo.mapper"
 })
 ```
 
-## 8.0 about me
+## 8.0 项目目录
+
+- u-na 是一个基于微服务架构的前后端分离的寄托希望梦想的内容分享系统.
+- 用`nacos`作为服务发现组件
+- una-gateway：网关服务（`只需启动una-provider和una-consumer即可测试nacos和网关是否成功搭建`）
+- una-provider: 一个最简单的分布式服务提供者模块
+- una-consumer: 一个最简单的分布式服务消费者模块
+- una-admin: 提供admin端API接口服务
+- una-web：提供web端API接口服务（`待做`）
+- una-xo: 是存放 VO、Service，Dao层的
+- una-commons：公共模块，主要用于存放Entity实体类、Feign远程调用接口、以及公共config配置
+- una-base: 是一些Base基类
+- una-utils: 是常用工具类；
+- 其他未完待续
+
+## 9.0 about me
 
 ```markdown
 By LC

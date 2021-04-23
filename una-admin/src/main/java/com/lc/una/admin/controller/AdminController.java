@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * 管理员表 控制层 AdminController
@@ -36,6 +37,12 @@ public class AdminController {
 	@GetMapping("/getAdminByUid")
 	public String getAdminByUid(@RequestParam(value = "uid", defaultValue = "1", required = true) String uid) {
 		return ResultUtil.successWithDataAndMessage(adminService.getAdminByUid(uid), "通过uid获取管理员");
+	}
+
+	@ApiOperation(value = "通过uid获取管理员-通过path传参方式", notes = "通过uid获取管理员-通过path传参方式")
+	@GetMapping("/{uid}")
+	public String getAdminByUidByPath(@PathVariable String uid) {
+		return ResultUtil.successWithDataAndMessage(adminService.getAdminByUid(uid), "通过uid获取管理员-通过path传参方式");
 	}
 
 	@ApiOperation(value = "新增管理员", notes = "新增管理员")

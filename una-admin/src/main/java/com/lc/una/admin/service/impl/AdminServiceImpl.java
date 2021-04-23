@@ -4,17 +4,18 @@ import com.lc.una.admin.entity.Admin;
 import com.lc.una.admin.mapper.AdminMapper;
 import com.lc.una.admin.service.AdminService;
 import com.lc.una.utils.tools.ResultUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
 	// @Autowired // Could not autowire. No beans of 'AdminMapper' type found.
-	// @Resource
-	@Autowired
+	// @Resource // 使用这个 后面无提示
+	// 上面两种注解程序的编译和运行都是没有问题
+	@Resource
 	private AdminMapper adminMapper;
 
 	@Override
