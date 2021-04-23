@@ -24,6 +24,8 @@
     </properties>
 
     <dependencies>
+        <!--下面包含【spring-boot-starter】-->
+        <!--spring-boot.version2.4.5 不包含【spring-boot-starter-validation】了 下面自己添加此依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -36,6 +38,78 @@
             </exclusions> -->
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>tomcat-embed-el</artifactId>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--先隐掉 不启用 spring-boot-starter-security-->
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <!-- 引入SpringBoot配置文件处理类-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>${spring-boot.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!--spring切面aop依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <!--spring cloud 相关-->
+        <!--Spring Cloud Sleuth+zipkin实现链路追踪 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>bcpkix-jdk15on</artifactId>
+                    <groupId>org.bouncycastle</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <!--把commons-fileupload版本变为1.4 和openfeign使用的保持一致 不隐掉 也不会依赖冲突-->
+            <!--<exclusions>
+                <exclusion>
+                    <artifactId>commons-fileupload</artifactId>
+                    <groupId>commons-fileupload</groupId>
+                </exclusion>
+            </exclusions>-->
+        </dependency>
+
+        <!--spring boot test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -85,7 +159,7 @@
             <version>${jackson.mapper.asl.version}</version>
         </dependency>
 
-        <!-- email -->
+        <!--email -->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
@@ -99,7 +173,7 @@
             </exclusions>
         </dependency>
 
-        <!-- 引入Json相关 -->
+        <!--引入Json相关 -->
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
@@ -120,7 +194,7 @@
             <version>${google.code.gson.version}</version>
         </dependency>
 
-        <!-- Apache开源组织提供的用于摘要运算、编码解码的包 常见的编码解码工具Base64、MD5、Hex、SHA1、DES等 -->
+        <!--Apache开源组织提供的用于摘要运算、编码解码的包 常见的编码解码工具Base64、MD5、Hex、SHA1、DES等 -->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -148,7 +222,7 @@
             <version>${ip2region.version}</version>
         </dependency>
 
-        <!-- 获取系统信息 -->
+        <!--获取系统信息 -->
         <dependency>
             <groupId>com.github.oshi</groupId>
             <artifactId>oshi-core</artifactId>
@@ -168,14 +242,15 @@
             <version>${jjwt.version}</version>
         </dependency>
 
-        <!-- 引入lombok -->
+        <!--引入lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+        <!--https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+        <!--spring-cloud-starter-openfeign 包含下面的 openfeign 已剔除此依赖 这里单独引用吧-->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
@@ -189,8 +264,9 @@
             <version>${thumbnailator.version}</version>
         </dependency>
 
-        <!--com/lc/una/utils/UniappUtils.java:3 这里使用-->
-        <!--spring-cloud-starter-sleuth这个依赖也包含的 这里单独引入吧-->
+        <!--com/lc/una/utils/tools/UniappUtils.java:3 这里使用-->
+        <!--spring-cloud-starter-sleuth 这个依赖也包含的 sleuth 已剔除此依赖 这里单独引入吧-->
+        <!--org.springframework.security 也包含这个了-->
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk15on</artifactId>

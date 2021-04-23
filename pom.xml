@@ -39,9 +39,9 @@
         <oshi.version>3.9.1</oshi.version>
         <HikariCP.version>3.4.5</HikariCP.version>
         <jjwt.version>0.7.0</jjwt.version>
-        <commons-fileupload.version>1.3.3</commons-fileupload.version>
+        <commons-fileupload.version>1.4</commons-fileupload.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
-        <bcpkix.version>1.60</bcpkix.version>
+        <bcpkix.version>1.64</bcpkix.version>
         <aspectjrt.version>1.9.6</aspectjrt.version>
         <starter.data.redis.version>2.2.2.RELEASE</starter.data.redis.version>
         <jaxb.version>2.3.0</jaxb.version>
@@ -49,11 +49,14 @@
     </properties>
 
     <modules>
-        <module>una-utils</module>
+        <module>una-gateway</module>
         <module>una-provider</module>
         <module>una-consumer</module>
-        <module>una-gateway</module>
         <module>una-admin</module>
+        <module>una-commons</module>
+        <module>una-xo</module>
+        <module>una-base</module>
+        <module>una-utils</module>
     </modules>
 
     <dependencyManagement>

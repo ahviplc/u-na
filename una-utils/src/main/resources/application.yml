@@ -1,5 +1,5 @@
-# una-utils:常用工具类
-# 此una-utils:常用工具类 只是工具类模块 不可放开下面配置
+# una-utils:常用工具类模块
+# 此una-utils:常用工具类模块 只是工具类模块 不可放开下面配置
 # u-na 整体打包时 其他引入此模块的模块打包 不注释掉下面 会报错 【比如 una-provider 模块的pom.xml里引入了 una-utils 打包会报 java: 程序包com.lc.una.utils不存在】
 # 会报【Could not find artifact com.lc:una-utils:pom:1.0.0 in aliyun-maven (https://maven.aliyun.com/repository/public)】
 # 从 una-utils/pom.xml:233 这行开始,注释掉了
@@ -12,9 +12,10 @@
 # 注释之后 这样执行【java -jar una-utils-1.0.0.jar】 会报【una-utils-1.0.0.jar中没有主清单属性】)
 # 放开注释之后
 # 其打出 una-utils 模块的jar包 就是可执行的 【java -jar una-utils-1.0.0.jar】
+# 目前web依赖已去除 不可启动了 只是把此模块当成常用工具类模块吧
 # 可通过端口 114 访问其服务接口.
-server:
-  port: 114 # 寓意着哪里需要哪里搬,一按我帮你
+#server:
+#  port: 114 # 寓意着哪里需要哪里搬,一按我帮你
 
 spring:
   application:

@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * 时间操作工具类
  *
- * @author 陌溪
+ * @author LC
  * @date 2018年5月8日 上午9:20:33
  */
 public class DateUtils {

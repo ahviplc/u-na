@@ -1,0 +1,4 @@
+# una-xo:存放 VO、Service，Dao层模块,这里引入una-commons模块
+spring:
+  application:
+    name: una-xo

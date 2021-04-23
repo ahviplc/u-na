@@ -356,7 +356,7 @@ http://www.slf4j.org/docs.html
 hutool-log/src/test/java/cn/hutool/log/test/StaticLogTest.java · dromara/hutool - 码云 - 开源中国
 https://gitee.com/dromara/hutool/blob/v5-master/hutool-log/src/test/java/cn/hutool/log/test/StaticLogTest.java
 
-mogu_picture/src/main/resources/logback-spring.xml · 陌溪/蘑菇博客 - Gitee.com
+mogu_picture/src/main/resources/logback-spring.xml · 陌 溪/蘑菇博客 - Gitee.com
 https://gitee.com/moxi159753/mogu_blog_v2/blob/Nacos/mogu_picture/src/main/resources/logback-spring.xml
 
 gateway-nacos-knife4j整合加访问权限控制(详细教程适合新手入门)_FREE_GIFT_白给怪的博客-CSDN博客
@@ -365,7 +365,7 @@ https://blog.csdn.net/qq_43578385/article/details/111865228
 knife4j: knife4j是为Java MVC框架集成Swagger生成Api文档的工具,前身是swagger-bootstrap-ui
 https://gitee.com/xiaoym/knife4j
 
-mogu_utils · 陌溪/蘑菇博客 - 码云 - 开源中国
+mogu_utils · 陌 溪/蘑菇博客 - 码云 - 开源中国
 https://gitee.com/moxi159753/mogu_blog_v2/tree/Nacos/mogu_utils
 
 Intellij IDEA运行报Command line is too long的解决办法 - SegmentFault 思否
@@ -394,6 +394,9 @@ https://blog.csdn.net/qq_36561105/article/details/109034284
 
 java中XO -> PO(entity) VO BO DTO DAO POJO DO 概念-CSDN博客
 https://blog.csdn.net/qq_44801116/article/details/105211678
+
+intellij idea全局查找和替换_分享传递价值-CSDN博客_idea全局替换
+https://blog.csdn.net/fanrenxiang/article/details/80168215
 ```
 
 ## 7.0 其他

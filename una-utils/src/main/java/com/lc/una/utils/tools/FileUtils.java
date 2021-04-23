@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * 文件操作工具类
  *
- * @author 陌溪
+ * @author LC
  * @date 2017年10月2日12:16:27
  */
 public class FileUtils {

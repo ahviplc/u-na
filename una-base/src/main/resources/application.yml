@@ -1,0 +1,4 @@
+# una-base:一些Base基类模块,这里引入una-utils模块
+spring:
+  application:
+    name: una-base

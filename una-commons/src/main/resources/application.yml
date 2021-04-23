@@ -1,0 +1,4 @@
+# una-commons:公共模块，主要用于存放Entity实体类、Feign远程调用接口、以及公共config配置,这里引入una-base模块
+spring:
+  application:
+    name: una-commons
