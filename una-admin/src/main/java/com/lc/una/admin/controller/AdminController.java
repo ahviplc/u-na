@@ -37,7 +37,7 @@ public class AdminController {
 	@PostMapping("/getList")
 	public String getList(@RequestBody AdminVO adminVO, BindingResult result) {
 		StaticLog.info("...getList...获取管理员列表...");
-		return ResultUtil.successWithDataAndMessage(adminService.getList(adminVO), "获取管理员列表");
+		return adminService.getList(adminVO);
 	}
 
 	@ApiOperation(value = "获取全部管理员列表", notes = "获取全部管理员列表")

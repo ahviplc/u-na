@@ -59,11 +59,28 @@ knife4j:
 mybatis-plus:
   # xml文件在resources文件夹内【una-admin/src/main/resources/mapper/AdminMapper.xml】路径配置方式【mapper/*Mapper.xml】
   # mapper-locations: mapper/*Mapper.xml
+  # 在【una-xo/src/main/resources/mapper/AdminMapper.xml】
+  # 配置【mapper/**/*.xml】也可以
+  # 配置 默认值：["classpath*:/mapper/**/*.xml"] 也可以
   # 在属性文件中【una-admin/src/main/java/com/lc/una/admin/mapper/AdminMapper.xml】指定xml文件路径 路径配置方式【classpath:com/lc/una/admin/mapper/*.xml】
-  # 默认值：["classpath*:/mapper/**/*.xml"]
+  # 其 mapper-locations 配置 默认值：["classpath*:/mapper/**/*.xml"]
   # Maven 多模块项目的扫描路径需以 classpath*: 开头 （即加载多个 jar 包下的 XML 文件）
-  mapper-locations: classpath:com/lc/una/xo/mapper/*Mapper.xml
-  #实体扫描，多个package用逗号或者分号分隔
+  # 所以即使放到 【una-xo/src/main/java/com/lc/una/xo/mapper/AdminMapper.xml】
+  # 配置 默认值：["classpath*:/mapper/**/*.xml"] 也可以找到
+  # 如果放在了【una-xo/src/main/java/com/lc/una/xo/temp/AdminMapper.xml】
+  # 配置【mapper-locations: classpath:com/lc/una/xo/temp/*.xml】可以找到
+  # 配置【mapper-locations: com/lc/una/xo/temp/**/*.xml】可以找到
+  # 配置【mapper-locations: com/lc/una/xo/temp/*.xml】也可以找到 有没有classpath都一样
+  # 配置【mapper-locations: classpath*:**/temp/**/*.xml】也是很行的 这个去掉classpath应该也可以 感兴趣可以自己验证
+  # 总结
+  # 文件在 【una-xo/src/main/java/com/lc/una/xo/mapper/AdminMapper.java】
+  # 配置【mapper-locations: classpath:com/lc/una/xo/mapper/*Mapper.xml】可以
+  # 配置【mapper-locations: /mapper/**/*.xml】可以
+  # 配置【mapper-locations: mapper/**/*.xml】可以
+  # 最后使用下面mbp默认配置【mapper-locations: classpath*:/mapper/**/*.xml】即使不配置 mapper-locations 其默认也会是这个.
+  # 注意:如果没配或者配置错误 mapper-locations ,此mbp的自动配置类也会按照其默认配置路径去查找mapper,找到就会用它
+  mapper-locations: classpath*:/mapper/**/*.xml
+  # 实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.lc.una.commons.entity
   global-config:
     # 数据库相关配置

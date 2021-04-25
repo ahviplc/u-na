@@ -79,6 +79,14 @@
             <version>${spring-boot.version}</version>
         </dependency>
 
+        <!-- spring data redis -->
+        <!--和 <version>${spring-boot.version}</version>保持一致即可-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>${starter.data.redis.version}</version>
+        </dependency>
+
         <!--spring cloud 相关-->
         <!--Spring Cloud Sleuth+zipkin实现链路追踪 -->
         <dependency>
@@ -278,13 +286,6 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
             <version>${aspectjrt.version}</version>
-        </dependency>
-
-        <!-- spring data redis -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>${starter.data.redis.version}</version>
         </dependency>
 
         <!-- 高版本Java(jdk14)需要 -->

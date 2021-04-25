@@ -44,7 +44,7 @@ class ConsumerApplicationTests {
 			}
 		});
 
-		boolean isPublishOk = configService.publishConfig(dataId, group, "content");
+		boolean isPublishOk = configService.publishConfig(dataId, group, "test:content");
 		System.out.println(isPublishOk);
 
 		Thread.sleep(3000);

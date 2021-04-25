@@ -397,6 +397,9 @@ https://blog.csdn.net/qq_44801116/article/details/105211678
 
 intellij idea全局查找和替换_分享传递价值-CSDN博客_idea全局替换
 https://blog.csdn.net/fanrenxiang/article/details/80168215
+
+@ComponentScan 详解_dxyzhbb的博客-CSDN博客_componentscan
+https://blog.csdn.net/dxyzhbb/article/details/109533399
 ```
 
 ## 7.0 其他
@@ -446,11 +449,12 @@ spring:
 
 ### 7.2 其他项
 
+#### 7.2.1 从nacos获取配置信息
+
+`测试用例在以下代码行`
+
 ```markdown
-@ComponentScan(basePackages = {
-		"com.lc.una.utils",
-		"com.lc.una.admin",
-})
+com/lc/una/consumer/ConsumerApplicationTests.java:24
 ```
 
 ## 8.0 项目目录

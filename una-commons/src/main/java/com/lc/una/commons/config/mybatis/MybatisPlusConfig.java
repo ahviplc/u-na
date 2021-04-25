@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2021年4月22日13:40:49
  */
 // 这个【@MapperScan】注解，作用相当于下面的@Bean MapperScannerConfigurer
-// @MapperScan("com.lc.una.admin.mapper")
+// @MapperScan("com.lc.una.xo.mapper")
 // 二者配置其一即可
 @Configuration
 public class MybatisPlusConfig {
@@ -53,10 +53,11 @@ public class MybatisPlusConfig {
 		return interceptor;
 	}
 
-	@Bean
+	// 先用不到
+	/*@Bean
 	public H2KeyGenerator getH2KeyGenerator() {
 		return new H2KeyGenerator();
-	}
+	}*/
 
 	/**
 	 * 性能分析拦截器，不建议生产使用

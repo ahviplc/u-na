@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 // 知识点
 // 在 Spring Boot 启动类中添加 @MapperScan 注解，扫描 Mapper 文件夹
-// @MapperScan("com.lc.una.utils.xo.mapper")
+// @MapperScan("com.lc.una.xo.mapper")
 // 上面【@MapperScan】注解，作用相当于【com/lc/una/commons/config/mybatis/MybatisPlusConfig.java:34】下@Bean注解的MapperScannerConfigurer
 // 二者配置其一即可
 // 这里使用了第二种 配置在了【com/lc/una/commons/config/mybatis/MybatisPlusConfig.java:34】
@@ -23,8 +23,9 @@ import org.springframework.context.annotation.ComponentScan;
 		"com.lc.una.commons.config",
 		// 下面是扫描una项目所有的VO、Service，Dao层
 		"com.lc.una.xo.vo",
-		"com.lc.una.xo.mapper",
 		"com.lc.una.xo.service"
+		// 这个不需要 看line15的说明 不是这样扫描出mapper的 这里只是根据定义的扫描路径，把符合扫描规则的类装配到spring容器中
+		// "com.lc.una.xo.mapper"
 })
 public class AdminApplication {
 

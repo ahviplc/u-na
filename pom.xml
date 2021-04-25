@@ -43,7 +43,7 @@
         <thumbnailator.version>0.4.8</thumbnailator.version>
         <bcpkix.version>1.64</bcpkix.version>
         <aspectjrt.version>1.9.6</aspectjrt.version>
-        <starter.data.redis.version>2.2.2.RELEASE</starter.data.redis.version>
+        <starter.data.redis.version>2.4.5</starter.data.redis.version>
         <jaxb.version>2.3.0</jaxb.version>
         <activation.version>1.1.1</activation.version>
     </properties>
