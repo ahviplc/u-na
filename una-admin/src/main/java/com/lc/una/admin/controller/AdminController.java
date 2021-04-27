@@ -3,6 +3,8 @@ package com.lc.una.admin.controller;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.log.StaticLog;
 import com.lc.una.admin.global.MessageConf;
+import com.lc.una.base.exception.ThrowableUtils;
+import com.lc.una.base.validator.group.GetList;
 import com.lc.una.commons.entity.Admin;
 import com.lc.una.utils.tools.ResultUtil;
 import com.lc.una.xo.service.AdminService;
@@ -11,6 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,10 +36,12 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-	@ApiOperation(value = "获取管理员列表", notes = "获取管理员列表")
+	@ApiOperation(value = "获取管理员列表-包含分页信息", notes = "获取管理员列表-包含分页信息")
 	@PostMapping("/getList")
-	public String getList(@RequestBody AdminVO adminVO, BindingResult result) {
+	public String getList(@Validated({GetList.class}) @RequestBody AdminVO adminVO, BindingResult result) {
 		StaticLog.info("...getList...获取管理员列表...");
+		// 参数校验
+		ThrowableUtils.checkParamArgument(result);
 		return adminService.getList(adminVO);
 	}
 
