@@ -281,12 +281,14 @@
             <version>${bcpkix.version}</version>
         </dependency>
 
-        <!--引入aspectjrt-->
-        <dependency>
+        <!--这里就不自己再次引入aspectjrt了-->
+        <!--因为spring-cloud-sleuth-zipkin和spring-cloud-starter-sleuth中都有引入-->
+        <!--目前版本 ${aspectjrt.version} 1.9.6-->
+        <!--<dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
             <version>${aspectjrt.version}</version>
-        </dependency>
+        </dependency>-->
 
         <!-- 高版本Java(jdk14)需要 -->
         <dependency>

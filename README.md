@@ -222,6 +222,12 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 > http://patorjk.com/software/taag/#p=display&f=Cards&t=u-na
 
+### 4.5 引入AOP
+
+> una-admin/src/main/java/com/lc/una/admin/annotion/AuthorityVerify/AuthorityVerify.java
+
+> una-admin/src/main/java/com/lc/una/admin/annotion/CallMeLog/CallMeLog.java
+
 ## 5.0 访问我
 
 `下面是此项目的一些访问链接`
@@ -274,6 +280,8 @@ u-na/logs/una-consumer/una-consumer-info.log
 `访问una的Api接口文档`
 
 > http://localhost:5000/doc.html
+
+> http://localhost:5000/doc.html#/una-admin/una%E7%9A%84%E5%90%8E%E7%AB%AFadmin%E6%A8%A1%E5%9D%97%E7%9A%84admin%E7%AE%A1%E7%90%86%E5%91%98%E8%A1%A8/getListUsingPOST
 
 ## 6.0 参考资料
 
@@ -400,6 +408,21 @@ https://blog.csdn.net/fanrenxiang/article/details/80168215
 
 @ComponentScan 详解_dxyzhbb的博客-CSDN博客_componentscan
 https://blog.csdn.net/dxyzhbb/article/details/109533399
+
+6-SpringAOP-什么是面向切面编程？ | 515code-实验室 | 下面是对应视频
+https://www.515code.com/posts/egs95cdu/
+
+6-【2020实战】SpringBoot零基础入门04-AOP面向切面编程与日志框架_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili
+https://www.bilibili.com/video/BV1KT4y1G7hs
+
+aop execution 表达式解析 - JAVA-ANDROID - 博客园
+https://www.cnblogs.com/Struts-pring/p/9881716.html
+
+6-IntelliJ IDEA自动导入包去除星号（import xxx.*）-【导入同一个包的类超过这个数值自动变为 * 】
+https://www.pianshen.com/article/13521945425/
+
+6-与上面一起使用效果更好-intelliJ IDEA自动优化导入包-【Optimize imports on the fly：自动去掉一些没有用到的包 Add unambiguous imports on the fly：自动帮我们优化导入的包】  
+https://blog.csdn.net/assassinsshadow/article/details/73730817
 ```
 
 ## 7.0 其他
@@ -445,7 +468,24 @@ spring:
             - StripPrefix=1 # 在请求转发之前去掉一层路径
 ```
 
-#### 7.1.2 其他知识点
+#### 7.1.2 关于抛出异常的那些事
+
+```markdown
+1.0 如果需要控制台具体抛出打印错误异常信息
+声明下面日志工厂类 获取log
+static Log log = LogFactory.get();
+然后【log.error("系统统一异常处理2：", exception);】
+即可
+或者
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
+log.error("系统统一异常处理：", exception);
+即可
+2.0 如果只是获取错误异常信息 优雅 不直接抛出错误异常信息
+直接【StaticLog.error("系统统一异常处理：{}", exception);】即可
+```
+
+#### 7.1.3 其他知识点
 
 ### 7.2 其他项
 

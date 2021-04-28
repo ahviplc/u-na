@@ -1,8 +1,16 @@
 package com.lc.una.base.handler;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import cn.hutool.log.StaticLog;
+import com.lc.una.base.exception.exceptionType.ApiInvalidParamException;
+import com.lc.una.base.exception.exceptionType.BusinessException;
+import com.lc.una.base.exception.exceptionType.DeleteException;
+import com.lc.una.base.exception.exceptionType.InsertException;
+import com.lc.una.base.exception.exceptionType.LoginException;
+import com.lc.una.base.exception.exceptionType.QueryException;
+import com.lc.una.base.exception.exceptionType.UpdateException;
 import com.lc.una.utils.tools.ResultUtil;
-import com.lc.una.base.exception.exceptionType.*;
 import com.lc.una.base.global.BaseMessageConf;
 import com.lc.una.base.global.ErrorCode;
 import org.springframework.http.MediaType;
@@ -21,6 +29,9 @@ import java.io.PrintWriter;
  */
 public class MyHandlerExceptionResolver implements HandlerExceptionResolver {
 
+	// 声明下面日志工厂类 获取log
+	static Log log = LogFactory.get();
+
 	/**
 	 * 异常处理方法
 	 *
@@ -33,6 +44,9 @@ public class MyHandlerExceptionResolver implements HandlerExceptionResolver {
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) {
 		StaticLog.error("系统统一异常处理：{}", exception);
+		// 下面的会抛出具体的错误异常信息
+		log.error("系统统一异常处理：", exception);
+
 		// 若响应已响应或已关闭，则不操作
 		if (response.isCommitted()) {
 			return new ModelAndView();
