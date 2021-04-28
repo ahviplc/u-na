@@ -11,7 +11,9 @@
     <!--<groupId>com.lc</groupId>-->
     <artifactId>una-commons</artifactId>
     <modelVersion>4.0.0</modelVersion>
-    <version>${parent.version}</version>
+    <!--子模块中使用父pom版本，只需删除<version>标签,它们将从父代继承该版本,无需在子模块再次声明-->
+    <!--<version>${parent.version}</version>-->
+    <!--<version>${project.parent.version}</version>-->
     <name>una-commons</name>
     <description>una-commons:公共模块，主要用于存放Entity实体类、Feign远程调用接口、以及公共config配置,这里引入una-base模块</description>
 

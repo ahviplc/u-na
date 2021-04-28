@@ -10,7 +10,9 @@
     <artifactId>una-gateway</artifactId>
     <modelVersion>4.0.0</modelVersion>
     <name>una-gateway</name>
-    <version>${parent.version}</version>
+    <!--子模块中使用父pom版本，只需删除<version>标签,它们将从父代继承该版本,无需在子模块再次声明-->
+    <!--<version>${parent.version}</version>-->
+    <!--<version>${project.parent.version}</version>-->
     <packaging>jar</packaging>
     <description>una-gateway:网关模块</description>
 

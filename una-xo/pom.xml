@@ -11,7 +11,9 @@
     <!--<groupId>com.lc</groupId>-->
     <artifactId>una-xo</artifactId>
     <modelVersion>4.0.0</modelVersion>
-    <version>${parent.version}</version>
+    <!--子模块中使用父pom版本，只需删除<version>标签,它们将从父代继承该版本,无需在子模块再次声明-->
+    <!--<version>${parent.version}</version>-->
+    <!--<version>${project.parent.version}</version>-->
     <name>una-xo</name>
     <description>una-xo:存放 VO、Service，Dao层模块,这里引入una-commons模块</description>
 

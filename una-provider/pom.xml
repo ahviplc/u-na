@@ -11,7 +11,9 @@
     <!--<groupId>com.lc</groupId>-->
     <artifactId>una-provider</artifactId>
     <modelVersion>4.0.0</modelVersion>
-    <version>${parent.version}</version>
+    <!--子模块中使用父pom版本，只需删除<version>标签,它们将从父代继承该版本,无需在子模块再次声明-->
+    <!--<version>${parent.version}</version>-->
+    <!--<version>${project.parent.version}</version>-->
     <packaging>jar</packaging>
     <name>una-provider</name>
     <description>una-provider:一个最简单的分布式服务提供者模块</description>
@@ -69,6 +71,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${maven-plugin.version}</version>
                 <configuration>
                     <!-- 指定该Main Class为全局的唯一入口 -->
                     <mainClass>com.lc.una.provider.ProviderApplication</mainClass>
