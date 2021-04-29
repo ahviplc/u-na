@@ -283,6 +283,12 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 > http://localhost:5000/doc.html#/una-admin/una%E7%9A%84%E5%90%8E%E7%AB%AFadmin%E6%A8%A1%E5%9D%97%E7%9A%84admin%E7%AE%A1%E7%90%86%E5%91%98%E8%A1%A8/getListUsingPOST
 
+`actuator` `使用actuator进行健康监控` `目前只有una-admin模块有引入其依赖(因为只有una-admin模块引入了una-xo模块-此una-xo模块内包una-utils模块 una-utils模块的pom.xml中有引入此依赖)`
+
+> http://localhost:8090/actuator
+
+> http://localhost:8090/actuator/health
+
 ## 6.0 参考资料
 
 ```markdown
@@ -432,6 +438,9 @@ https://blog.csdn.net/justry_deng/article/details/104890620/
 
 CommonRepository/Abc_RedisUtil_Demo at master · JustryDeng/CommonRepository · GitHub - 一个走心的RedisUtil工具类 demo
 https://github.com/JustryDeng/CommonRepository/tree/master/Abc_RedisUtil_Demo
+
+SpringBoot重点详解--使用Actuator进行健康监控_pengjunlee的博客-CSDN博客
+https://blog.csdn.net/pengjunlee/article/details/80235390
 ```
 
 ## 7.0 其他

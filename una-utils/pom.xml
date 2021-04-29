@@ -60,6 +60,7 @@
             <version>${spring-boot.version}</version>
         </dependency>-->
 
+        <!--使用actuator进行健康监控 引入其依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
