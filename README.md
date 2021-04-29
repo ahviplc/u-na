@@ -423,6 +423,15 @@ https://www.pianshen.com/article/13521945425/
 
 6-与上面一起使用效果更好-intelliJ IDEA自动优化导入包-【Optimize imports on the fly：自动去掉一些没有用到的包 Add unambiguous imports on the fly：自动帮我们优化导入的包】  
 https://blog.csdn.net/assassinsshadow/article/details/73730817
+
+Spring Boot 整合redis的两种方式_saltsoul的博客-CSDN博客
+https://blog.csdn.net/saltsoul/article/details/97097817
+
+一个走心的RedisUtil工具类_JustryDeng-CSDN博客_redisutils工具类方法
+https://blog.csdn.net/justry_deng/article/details/104890620/
+
+CommonRepository/Abc_RedisUtil_Demo at master · JustryDeng/CommonRepository · GitHub - 一个走心的RedisUtil工具类 demo
+https://github.com/JustryDeng/CommonRepository/tree/master/Abc_RedisUtil_Demo
 ```
 
 ## 7.0 其他

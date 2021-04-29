@@ -87,6 +87,21 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
             <version>${starter.data.redis.version}</version>
+            <exclusions>
+                <!--排除lettuce-->
+                <exclusion>
+                    <artifactId>lettuce-core</artifactId>
+                    <groupId>io.lettuce</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--使用jedis 排除了lettuce 引入jedis依赖-->
+        <!--最新版本【<version>${jedis.version}</version>】不用 3.6.0了-->
+        <!--目前使用这个版本是3.3.0-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
         </dependency>
 
         <!--spring cloud 相关-->

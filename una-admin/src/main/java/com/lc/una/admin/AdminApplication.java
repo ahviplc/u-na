@@ -23,7 +23,9 @@ import org.springframework.context.annotation.ComponentScan;
 		"com.lc.una.commons.config",
 		// 下面是扫描una项目所有的VO、Service，Dao层
 		"com.lc.una.xo.vo",
-		"com.lc.una.xo.service"
+		"com.lc.una.xo.service",
+		// 这些工具类组件(@Component修饰的工具类) 也要扫描进来
+		"com.lc.una.utils.tools"
 		// 这个不需要 看line15的说明 不是这样扫描出mapper的 这里只是根据定义的扫描路径，把符合扫描规则的类装配到spring容器中
 		// "com.lc.una.xo.mapper"
 })

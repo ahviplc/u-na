@@ -48,6 +48,7 @@
         <activation.version>1.1.1</activation.version>
         <maven-plugin.version>2.4.5</maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <!--<jedis.version>3.6.0</jedis.version>-->
     </properties>
 
     <modules>
