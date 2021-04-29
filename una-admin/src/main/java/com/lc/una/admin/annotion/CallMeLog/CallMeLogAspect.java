@@ -2,10 +2,12 @@ package com.lc.una.admin.annotion.CallMeLog;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import com.alibaba.csp.sentinel.util.StringUtil;
+// import com.lc.una.utils.tools.AspectUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -16,11 +18,16 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +49,7 @@ import java.util.Map;
  * 请求类方法签名的名称
  * 请求类方法参数
  * 对应的类名 方法名
+ * 请求url
  * 执行请求时长
  *
  * @author : LC
@@ -82,6 +90,19 @@ public class CallMeLogAspect {
 		// 获取访问方法的参数
 		Object[] args = joinPoint.getArgs();
 
+		// 使用AspectUtil工具类
+		// 获取具体执行方法的Method对象 访问的方法 获得 Method
+		// Method visitMethod = AspectUtil.INSTANCE.getMethod(joinPoint);
+		// System.out.println(visitMethod.getName());
+		// 获取的和下面一样
+
+		// 获取具体执行方法的Method对象 访问的方法
+		Method visitMethod;
+		MethodSignature msig = (MethodSignature) signature;
+		visitMethod = visitClass.getMethod(methodNameOfSignature, msig.getParameterTypes());
+		// 打印参数类型
+		// System.out.println(visitMethod.getParameterTypes());
+
 		// 开始处理请求内容
 		ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		HttpServletRequest request = requestAttributes.getRequest();
@@ -103,6 +124,7 @@ public class CallMeLogAspect {
 				token = "null";
 			}
 		}
+
 		StaticLog.info("------@CallMeLog【前置通知】------请求内容 开始------");
 		StaticLog.info("------@CallMeLog【前置通知】------请求时间: {}", DateUtil.date(startVisitTime).toString("yyyy-MM-dd HH:mm:ss"));
 		StaticLog.info("------@CallMeLog【前置通知】------请求IP: {}", request.getRemoteAddr());
@@ -118,6 +140,33 @@ public class CallMeLogAspect {
 		StaticLog.info("------@CallMeLog【前置通知】------请求类方法签名的名称: {}", methodNameOfSignature);
 		StaticLog.info("------@CallMeLog【前置通知】------请求类方法参数: {}", ArrayUtil.toString(args));
 		StaticLog.info("------@CallMeLog【前置通知】------对应的类名: {} 方法名: {}", visitClass.getName(), methodNameOfSignature);
+
+		// 处理url
+		if (ObjectUtil.isNotNull(visitClass) && ObjectUtil.isNotNull(visitMethod)) {
+			// 获取RequestMapping注解
+			// java/lang/Class.java:3412
+			// Returns this element's annotation.
+			RequestMapping requestMappingClassAnnotation = (RequestMapping) visitClass.getAnnotation(RequestMapping.class);
+			if (ObjectUtil.isNotNull(requestMappingClassAnnotation)) {
+				String[] classValue = requestMappingClassAnnotation.value();
+				if ("GET".equals(requestMethod)) {
+					// 获取GetMapping注解
+					// java/lang/reflect/Method.java:621
+					// Returns this element's annotation for the specified type if such an annotation is present, else null.
+					GetMapping visitMethodAnnotation = visitMethod.getAnnotation(GetMapping.class);
+					getRealURL(classValue, visitMethodAnnotation != null, visitMethodAnnotation.value());
+				} else if ("POST".equals(requestMethod)) {
+					// 获取PostMapping注解
+					// java/lang/reflect/Method.java:621
+					// Returns this element's annotation for the specified type if such an annotation is present, else null.
+					PostMapping visitMethodAnnotation = visitMethod.getAnnotation(PostMapping.class);
+					getRealURL(classValue, visitMethodAnnotation != null, visitMethodAnnotation.value());
+				} else {
+					StaticLog.info("------@CallMeLog【前置通知】------未定义的请求方式{} 获取url跳出 不处理------", requestMethod);
+				}
+			}
+		}
+
 		StaticLog.info("------@CallMeLog【前置通知】------请求内容 结束------");
 	}
 
@@ -159,5 +208,21 @@ public class CallMeLogAspect {
 		Object proceedObj = joinPoint.proceed();
 		StaticLog.info("------@CallMeLog【环绕后通知】------{}", joinPoint);
 		return proceedObj;
+	}
+
+	/**
+	 * getRealURL 获取url
+	 *
+	 * @param classValue
+	 * @param b
+	 * @param value
+	 */
+	private void getRealURL(String[] classValue, boolean b, String[] value) {
+		String url;
+		if (b) {
+			String[] methodValue = value;
+			url = classValue[0] + methodValue[0];
+			StaticLog.info("------@CallMeLog【前置通知】------请求url: {}", url);
+		}
 	}
 }

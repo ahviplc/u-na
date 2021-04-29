@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
  * 请求类方法签名的名称
  * 请求类方法参数
  * 对应的类名 方法名
+ * 请求url
  * 执行请求时长
  *
  * @author LC
