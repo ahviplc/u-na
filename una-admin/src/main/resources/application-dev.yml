@@ -119,3 +119,23 @@ mybatis-plus:
     # 配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
     map-underscore-to-camel-case: true
     cache-enabled: false
+
+#==============================actuator配置=======================================
+management:
+  endpoints:
+    web:
+      base-path: /actuator #配置端点访问前缀
+      exposure:
+        # Actuator 默认只开放白哭 health 和 info 两个端点
+        # 这里 * 代表暴露所有端点
+        # include: '*' #暴露所有端点
+       include: 'env' #指定端点
+        # exclude: info,beans,env #在暴露所有端点的前提下，可以排除某个端点(不暴露)
+    enabled-by-default: true #false 禁用所有端点 true开启所有端点
+#  # 单独指定端点再处理
+#  endpoint:
+#    info:
+#      enabled: true #上面关闭所有端点之后，又暴露指定的端点，这里暴露info端点
+#    health:
+#      show-details: always
+#      enabled: true

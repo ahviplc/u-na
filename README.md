@@ -442,6 +442,9 @@ https://github.com/JustryDeng/CommonRepository/tree/master/Abc_RedisUtil_Demo
 SpringBoot重点详解--使用Actuator进行健康监控_pengjunlee的博客-CSDN博客
 https://blog.csdn.net/pengjunlee/article/details/80235390
 
+应用监控之 SpringBoot Actuator 使用及配置_JTraveler的博客-CSDN博客
+https://blog.csdn.net/weixin_44176169/article/details/105402127
+
 java注解-ElementType详解_SingleShu的博客-CSDN博客
 https://blog.csdn.net/sw5131899/article/details/54947192
 ```
