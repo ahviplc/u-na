@@ -84,7 +84,8 @@ docker run -i -t -d centos:latest
 docker run -d centos:latest ping www.baidu.com
 ```
 
-**case3: 运行一个在后台不断执行的容器，同时带有命令，程序被终止后还能重启继续跑**
+**case3:
+运行一个在后台不断执行的容器，同时带有命令，程序被终止后还能重启继续跑**
 
 ```bash
 docker run -d --restart=always centos:latest ping www.baidu.com
@@ -125,7 +126,8 @@ docker restart xxx
 docker rm xxx
 ```
 
-在查看容器列表时，如果某个容器的启动参数特别长，直接使用`docker ps -a`会发现看不到完整的启动命令，这个时候可以带上参数`--no-trunc`来显示完整命令
+在查看容器列表时，如果某个容器的启动参数特别长，直接使用`docker ps
+-a`会发现看不到完整的启动命令，这个时候可以带上参数`--no-trunc`来显示完整命令
 
 ```bash
 docker ps -a --no-trunc
@@ -407,7 +409,7 @@ nacos/nacos-server:latest
   ```
   # Using mysql 5.7
   docker-compose -f example/standalone-mysql-5.7.yaml up
-  
+
   # Using mysql 8
   docker-compose -f example/standalone-mysql-8.yaml up
   ```
@@ -517,7 +519,11 @@ mkdir -p /root/docker/redis/data
 在该目录放data
 ```
 
+**获取配置文件redis.conf**，从[官网下载](http://download.redis.io/redis-stable/redis.conf)
+
 **挂载启动命令**
+
+`挂载启动命令写法一`
 
 `映射配置文件`
 
@@ -533,6 +539,19 @@ docker run --name redis-docker -d -p 6379:6379 --privileged=true --restart alway
 -v /root/docker/redis/conf:/etc/redis/redis.conf    -> 映射配置文件
 -v /root/docker/redis/data:/data                    -> 映射数据目录
 --appendonly yes                                    -> 开启数据持久化
+```
+
+`挂载启动命令写法二`
+
+```bash
+docker run \
+-p 6379:6379 \ # 端口映射 宿主机:容器
+-v /usr/local/src/redis/data:/data:rw \ # 映射数据目录 rw 为读写
+-v /usr/local/src/redis/conf/redis.conf:/etc/redis/redis.conf:ro \ # 挂载配置文件 ro 为readonly
+--privileged=true \ # 给与一些权限
+--name redis-docker \ # 容器名称
+-d redis:latest  redis-server /etc/redis/redis.conf \ # deamon 运行 服务使用指定的配置文件
+--appendonly yes
 ```
 
 ##### 4.2.4 连接redis的几种方式
@@ -602,8 +621,7 @@ docker run --name sentinel -d -p 8858:8858 -d bladex/sentinel-dashboard
 
 ##### 4.4.3 访问DASHBOARD
 
-访问地址：http://ip:8858/#/login
-账户密码：sentinel/sentinel
+访问地址：http://ip:8858/#/login 账户密码：sentinel/sentinel
 
 #### 4.5 安装MySQL
 
@@ -625,12 +643,43 @@ $ docker run -itd --name mysql-docker -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456
 -p 3306:3306 ：映射容器服务的 3306 端口到宿主机的 3306 端口，外部主机可以直接通过 宿主机ip:3306 访问到 MySQL 的服务。
 MYSQL_ROOT_PASSWORD=123456 ：设置 MySQL 服务 root 用户的密码。
 -v $PWD/data:/var/lib/mysql : 将主机中当前目录下的data挂载到容器的/var/lib/mysql
-
-带挂载的运行
-docker run --name mysql-docker -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d -t -i -p 3306:3306 mysql:latest
 ```
 
-##### 4.5.3 进入容器
+##### 4.5.3 运行容器-映射配置文件
+
+```bash
+带挂载的运行命令写法一
+docker run --name mysql-docker -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d -t -i -p 3306:3306 mysql:latest
+
+带挂载的运行命令写法二
+直接执行 建个测试的容器 找出文件的具体路径位置,之后删除此容器,再重新挂载创建
+docker run --name mysql-docker -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+
+此命令用来查找Docker内，MySQL配置文件my.cnf的位置
+mysql --help | grep my.cnf
+
+接下来，我们需要在宿主机上，创建一个数据和配置文件的挂载路径
+创建文件路径
+mkdir -p /usr/local/src/mysql/conf && mkdir -p /usr/local/src/mysql/data
+
+创建好宿主机的挂载数据路径后，我们将测试容器里 MySQL 的配置文件复制到该路径。后面要是修改配置直接修改宿主机的配置文件即可
+docker cp mysql:/etc/mysql/my.cnf /usr/local/src/mysql/conf
+
+启动前需要将之前的安装测试的删除掉
+docker rm -f mysql-docker
+
+挂载启动
+docker run \ 
+--name mysql-docker \
+-p 3306:3306 \
+-e MYSQL_ROOT_PASSWORD=123456 \
+-v /usr/local/src/mysql/conf/my.cnf:/etc/mysql/my.cnf \
+-v /usr/local/src/mysql/data:/var/lib/mysql \
+--restart=on-failure:3 \
+-d mysql
+```
+
+##### 4.5.4 进入容器
 
 `通过 root 和密码 123456 访问 MySQL 服务`
 
