@@ -283,7 +283,9 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 > http://localhost:5000/doc.html#/una-admin/una%E7%9A%84%E5%90%8E%E7%AB%AFadmin%E6%A8%A1%E5%9D%97%E7%9A%84admin%E7%AE%A1%E7%90%86%E5%91%98%E8%A1%A8/getListUsingPOST
 
-`actuator` `使用actuator进行健康监控` `目前只有una-admin模块有引入其依赖(因为只有una-admin模块引入了una-xo模块-此una-xo模块内包una-utils模块 una-utils模块的pom.xml中有引入此依赖)`
+`actuator` `使用actuator进行健康监控`
+`目前只有una-admin模块有引入其依赖(因为只有una-admin模块引入了una-xo模块-此una-xo模块内包una-utils模块
+una-utils模块的pom.xml中有引入此依赖)`
 
 > http://localhost:8090/actuator
 
@@ -447,6 +449,21 @@ https://blog.csdn.net/weixin_44176169/article/details/105402127
 
 java注解-ElementType详解_SingleShu的博客-CSDN博客
 https://blog.csdn.net/sw5131899/article/details/54947192
+
+Maven 插件之 spotify docker-maven-plugin 的使用 - 星朝 - 博客园
+https://www.cnblogs.com/jpfss/p/10945324.html
+
+GitHub - spotify/docker-maven-plugin: INACTIVE: A maven plugin for Docker
+https://github.com/spotify/docker-maven-plugin
+
+GitHub - spotify/dockerfile-maven: MATURE: A set of Maven tools for dealing with Dockerfiles
+https://github.com/spotify/dockerfile-maven
+
+K8S入门系列(10)-使用开源项目io.fabric8之docker-maven-plugin插件打包Docker镜像至私服_云烟成雨csdn的博客-CSDN博客
+https://blog.csdn.net/qq_43437874/article/details/106913747
+
+GitHub - fabric8io/docker-maven-plugin: Maven plugin for running and creating Docker images
+https://github.com/fabric8io/docker-maven-plugin
 ```
 
 ## 7.0 其他
@@ -533,7 +550,8 @@ com/lc/una/consumer/ConsumerApplicationTests.java:24
 - una-xo: 是存放 VO、Service，Dao层的
 - una-commons：公共模块，主要用于存放Entity实体类、Feign远程调用接口、以及公共config配置
 - una-base: 是一些Base基类
-- una-utils: 是常用工具类；
+- una-utils: 是常用工具类
+- una-docs: 是一些文档文件夹
 - 其他未完待续
 
 ## 9.0 about me
