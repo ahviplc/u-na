@@ -530,14 +530,18 @@ mkdir -p /root/docker/redis/data
 ```bash
 docker run --name redis-docker -d -p 6379:6379 --privileged=true --restart always -v /root/docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /root/docker/redis/data:/data redis redis-server /etc/redis/redis.conf --appendonly yes
 
+`实际使用`
+docker run --name redis-docker -d -p 6379:6379 --privileged=true --restart always -v $PWD/conf/redis.conf:/etc/redis/redis.conf -v $PWD/data:/data redis redis-server /etc/redis/redis.conf --appendonly yes
+
 参数说明:
 -d                                                  -> 以守护进程的方式启动容器
 -p 6379:6379                                        -> 绑定宿主机端口
---name redis-docker                                      -> 指定容器名称
+--name redis-docker                                 -> 指定容器名称
 --restart always                                    -> 开机启动
 --privileged=true                                   -> 提升容器内权限
 -v /root/docker/redis/conf:/etc/redis/redis.conf    -> 映射配置文件
 -v /root/docker/redis/data:/data                    -> 映射数据目录
+-v $PWD/data:/data                                  -> 将主机中当前目录下的data挂载到容器的/data
 --appendonly yes                                    -> 开启数据持久化
 ```
 
@@ -636,7 +640,7 @@ docker pull mysql:latest
 安装完成后，我们可以使用以下命令来运行MySQL容器：
 
 ```bash
-$ docker run -itd --name mysql-docker -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
+$ docker run -itd --name mysql-docker -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql
 
 参数说明：
 
@@ -649,11 +653,11 @@ MYSQL_ROOT_PASSWORD=123456 ：设置 MySQL 服务 root 用户的密码。
 
 ```bash
 带挂载的运行命令写法一
-docker run --name mysql-docker -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d -t -i -p 3306:3306 mysql:latest
+docker run --name mysql-docker -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -d -t -i -p 3306:3306 mysql:latest
 
 带挂载的运行命令写法二
 直接执行 建个测试的容器 找出文件的具体路径位置,之后删除此容器,再重新挂载创建
-docker run --name mysql-docker -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+docker run --name mysql-docker -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql
 
 此命令用来查找Docker内，MySQL配置文件my.cnf的位置
 mysql --help | grep my.cnf
@@ -669,14 +673,28 @@ docker cp mysql:/etc/mysql/my.cnf /usr/local/src/mysql/conf
 docker rm -f mysql-docker
 
 挂载启动
-docker run \ 
+docker run \
 --name mysql-docker \
 -p 3306:3306 \
--e MYSQL_ROOT_PASSWORD=123456 \
+-e MYSQL_ROOT_PASSWORD=root \
 -v /usr/local/src/mysql/conf/my.cnf:/etc/mysql/my.cnf \
 -v /usr/local/src/mysql/data:/var/lib/mysql \
 --restart=on-failure:3 \
 -d mysql
+
+`实际执行 挂载启动`
+docker run \
+--name mysql-docker \
+-p 3306:3306 \
+-e MYSQL_ROOT_PASSWORD=root \
+-v $PWD/mysql:/etc/mysql \    # 里面有my.cnf
+-v $PWD/mysql-files:/var/lib/mysql-files \
+-v $PWD/data:/var/lib/mysql \
+--restart=on-failure:3 \
+-d mysql
+
+`实际执行 win docker 执行版命令 挂载启动`
+docker run --name mysql-docker -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -v $PWD/mysql:/etc/mysql -v $PWD/data:/var/lib/mysql -v $PWD/mysql-files:/var/lib/mysql-files --restart=on-failure:3 -d mysql
 ```
 
 #### 4.5.4 进入容器
@@ -691,14 +709,14 @@ docker exec -it mysql-docker /bin/bash
 ```
 mysql -uroot -p
 mysql -h localhost -u root -p
-输入密码即可
+输入密码root即可
 
 开启远程访问权限
 命令：use mysql;
 
 命令：select host,user from user;
 
-命令：ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+命令：ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
 
 命令：flush privileges;
 ```
@@ -732,6 +750,12 @@ https://www.runoob.com/docker/docker-install-mysql.html
 
 安装docker并使用docker安装mysql - 含有挂载
 https://www.cnblogs.com/jiefu/p/12204555.html
+
+MySQL 连接出现 Authentication plugin 'caching_sha2_password' cannot be loaded - 漠里 - 博客园
+https://www.cnblogs.com/zhurong/p/9898675.html
+
+docker mysql mysqld: Error on realpath() on '/var/lib/mysql-files' No such file or directory_巷中人的博客-CSDN博客
+https://blog.csdn.net/weixin_30338497/article/details/96153193
 
 Docker 入门到实战教程(八)安装Mysql - 详细
 https://mp.weixin.qq.com/s?__biz=MzU0MDczNzA1NQ%3D%3D&chksm=fb35e858cc42614e046beb7a7394ff02d0a8aabaf03a98af3c5cc535b0e45db78a5076a46acb&idx=1&mid=2247484200&scene=21&sn=13b9d8d07b660a64b2fc290855a190bb#wechat_redirect
@@ -777,5 +801,14 @@ http://get.daocloud.io/#install-docker-for-mac-windows
 
 配置 Docker 镜像站
 https://www.daocloud.io/mirror
+
+Redis 命令参考 — Redis 命令参考
+http://redisdoc.com/index.html
+
+Redis 教程_redis教程
+https://www.redis.net.cn/tutorial/3501.html
+
+Redis 命令参考 — Redis 命令参考
+http://doc.redisfans.com/index.html
 ```
 
