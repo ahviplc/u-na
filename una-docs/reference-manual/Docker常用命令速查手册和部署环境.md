@@ -682,7 +682,17 @@ docker run \
 --restart=on-failure:3 \
 -d mysql
 
-`实际执行 挂载启动`
+`linux 实际执行 挂载启动`
+docker run \
+--name mysql-docker \
+-p 3306:3306 \
+-e MYSQL_ROOT_PASSWORD=root \
+-v /docker-data/mysql/conf/my.cnf:/etc/mysql/my.cnf \
+-v /docker-data/mysql/data:/var/lib/mysql \
+--restart=on-failure:3 \
+-d mysql:5.7.34
+
+`win实际执行 挂载启动`
 docker run \
 --name mysql-docker \
 -p 3306:3306 \
