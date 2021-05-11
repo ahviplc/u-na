@@ -381,6 +381,23 @@ docker run -d \
 --name nacos \
 --restart=always \
 nacos/nacos-server:latest
+
+`linux 实际执行 命令`
+docker run -d \
+-e PREFER_HOST_MODE=ip \
+-e MODE=standalone \
+-e SPRING_DATASOURCE_PLATFORM=mysql \
+-e MYSQL_SERVICE_HOST=172.0.0.1 \
+-e MYSQL_SERVICE_PORT=3306 \
+-e MYSQL_SERVICE_USER=root \
+-e MYSQL_SERVICE_PASSWORD=ljroot \
+-e MYSQL_SERVICE_DB_NAME=nacos_config \
+-e TIME_ZONE='Asia/Shanghai' \
+-v $PWD/nacos/logs:/home/nacos/logs \
+-p 8848:8848 \
+--name nacos \
+--restart=always \
+nacos/nacos-server:latest
 ```
 
 #### 4.1.2 使用docker-compose
@@ -530,7 +547,7 @@ mkdir -p /root/docker/redis/data
 ```bash
 docker run --name redis-docker -d -p 6379:6379 --privileged=true --restart always -v /root/docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /root/docker/redis/data:/data redis redis-server /etc/redis/redis.conf --appendonly yes
 
-`实际使用`
+`win和Linux实际使用`
 docker run --name redis-docker -d -p 6379:6379 --privileged=true --restart always -v $PWD/conf/redis.conf:/etc/redis/redis.conf -v $PWD/data:/data redis redis-server /etc/redis/redis.conf --appendonly yes
 
 参数说明:
@@ -716,7 +733,7 @@ docker exec -it mysql-docker bash
 docker exec -it mysql-docker /bin/bash
 ```
 
-```
+```shell
 mysql -uroot -p
 mysql -h localhost -u root -p
 输入密码root即可
@@ -729,6 +746,53 @@ mysql -h localhost -u root -p
 命令：ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
 
 命令：flush privileges;
+```
+
+### 4.6 其他说明
+
+Linux下docker数据目录结构 `中间有删减`
+
+```shell
+root@lc-virtual-machine:/docker-data# tree
+.
+├── mysql
+│   ├── conf
+│   │   └── my.cnf
+│   └── data
+│       ├── auto.cnf
+│       ├── ca-key.pem
+│       ├── ib_logfile1
+│       ├── mysql
+│       │   ├── columns_priv.frm
+│       │   ├── func.frm
+│       │   └── user.MYI
+│       ├── performance_schema
+│       │   ├── accounts.fr
+│       │   ├── user_variables_by_thread.frm
+│       │   └── variables_by_thread.frm
+│       ├── private_key.pem
+│       ├── server-key.pem
+│       └── sys
+│           ├── db.opt
+│           ├── x@0024waits_by_user_by_latency.frm
+│           └── x@0024waits_global_by_latency.frm
+├── nacos
+│   └── logs
+│       ├── alipay-jraft.log
+│       ├── cmdb-main.log
+│       ├── config-client-request.log
+│       └── tps-control.log
+└── redis
+    ├── conf
+    │   └── redis.conf
+    └── data
+        ├── appendonly.aof
+        └── dump.rdb
+
+11 directories, 319 files
+root@lc-virtual-machine:/docker-data# pwd
+/docker-data
+root@lc-virtual-machine:/docker-data# 
 ```
 
 ## 5. 扩展
@@ -820,5 +884,26 @@ https://www.redis.net.cn/tutorial/3501.html
 
 Redis 命令参考 — Redis 命令参考
 http://doc.redisfans.com/index.html
+
+配置 Docker 镜像加速源地址_weixin_44953227的博客-CSDN博客_docker配置多个镜像源
+https://blog.csdn.net/weixin_44953227/article/details/109242166
+
+ssh root用户无法登录,密码是对的,解决办法(转) - sunzebo - 博客园
+https://www.cnblogs.com/sunzebo/articles/9609457.html
+
+Ubuntu怎么开启/关闭防火墙_不起眼的小孩-CSDN博客_ubuntu 关闭防火墙
+https://blog.csdn.net/smileui/article/details/87909393
+
+UBUNTU的默认root密码是多少，修改root密码 - 编程之家
+https://www.jb51.cc/ubuntu/355867.html
+
+docker 开启2375端口，提供外部访问docker,idea连接服务器docker_霓虹深处-CSDN博客_idea连接docker2376端口
+https://blog.csdn.net/qq_36850813/article/details/89924207
+
+ubuntu开启SSH服务远程登录_jackghq的博客-CSDN博客
+https://blog.csdn.net/jackghq/article/details/54974141
+
+Ubuntu 非root用户使用Docker命令提示：connect: permission denied_wick_hp的博客-CSDN博客
+https://blog.csdn.net/qq_36488647/article/details/104356685
 ```
 
