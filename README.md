@@ -298,18 +298,22 @@ mvn docker:build
 mvn docker:push
 
 `运行docker镜像命令`
-docker run -dit --name una-gateway-run -p 5000:5000 ahviplc/una-gateway:1.0.0
+docker run -dit --name una-gateway-run -p 5000:5000 -v /docker-data/una/una-gateway/logs:/una/deploy/app/logs ahviplc/una-gateway:1.0.0
 
-docker run -dit --name una-provider-run -p 8762:8762 ahviplc/una-provider:1.0.0
+docker run -dit --name una-provider-run -p 8762:8762 -v /docker-data/una/una-provider/logs:/una/deploy/app/logs ahviplc/una-provider:1.0.0
 
-docker run -dit --name una-consumer-run -p 8763:8763 ahviplc/una-consumer:1.0.0
+docker run -dit --name una-consumer-run -p 8763:8763 -v /docker-data/una/una-consumer/logs:/una/deploy/app/logs ahviplc/una-consumer:1.0.0
 
-docker run -dit --name una-admin-run -p 8090:8090 ahviplc/una-admin:1.0.0
+docker run -dit --name una-admin-run -p 8090:8090 -v /docker-data/una/una-admin/logs:/una/deploy/app/logs ahviplc/una-admin:1.0.0
 
 参数说明:
 其中关键参数为-d，指定容器运行与前台或者后台，不加上时前台
 -i: 打开STDIN，用于控制台交互
 -t: 支持终端登录
+
+`扩展使用$PWD`
+cd /docker-data 目录下 执行下面命令也可 其他项目类似:
+docker run -dit --name una-gateway-run -p 5000:5000 -v $PWD/una/una-gateway/logs:/una/deploy/app/logs ahviplc/una-gateway:1.0.0
 
 测试访问:
 http://192.168.0.6:5000/provider/nowTime
