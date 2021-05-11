@@ -111,6 +111,38 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <!--docker maven-->
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${fabric8io-docker-maven-plugin.version}</version>
+                <!--全局配置-->
+                <configuration>
+                    <!--配置远程docker守护进程url-->
+                    <!--http://192.168.0.6:2375 也可-->
+                    <dockerHost>tcp://192.168.0.6:2375</dockerHost>
+                    <!--认证配置,用于私有registry认证-->
+                    <!--<authConfig>
+                        <username>admin</username>
+                        <password>admin</password>
+                    </authConfig>-->
+                    <!--镜像相关配置,支持多镜像-->
+                    <images>
+                        <!-- 单个镜像配置 -->
+                        <image>
+                            <!--镜像名(含版本号)-->
+                            <name>ahviplc/${project.name}:${project.version}</name>
+                            <!--registry地址,用于推送,拉取镜像-->
+                            <registry>192.168.0.6</registry>
+                            <!--镜像build相关配置-->
+                            <build>
+                                <!--使用dockerFile文件-->
+                                <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

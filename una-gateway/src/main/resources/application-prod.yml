@@ -9,11 +9,11 @@ spring:
       username: nacos
       password: nacos
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 127.0.0.1:8848 # 192.168.0.6:8848 # docker容器版nacos使用
         service: una-gateway
         namespace: prod
       config:
-        server-addr: localhost:8848
+        server-addr: localhost:8848 # 192.168.0.6:8848 # docker容器版nacos使用
         file-extension: yaml
         # 指定分组
         group: prod

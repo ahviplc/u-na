@@ -11,11 +11,11 @@ spring:
       password: nacos
 
       discovery:
-        server-addr: localhost:8848
+        server-addr: localhost:8848 # 192.168.0.6:8848 # docker容器版nacos使用
         service: una-provider
         namespace: test
       config:
-        server-addr: localhost:8848
+        server-addr: localhost:8848 # 192.168.0.6:8848 # docker容器版nacos使用
         file-extension: yaml
         #指定分组
         group: test

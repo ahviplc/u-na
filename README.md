@@ -228,6 +228,98 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 > una-admin/src/main/java/com/lc/una/admin/annotion/CallMeLog/CallMeLog.java
 
+### 4.5 引入docker maven
+
+`使用开源项目io.fabric8之docker-maven-plugin插件打包Docker镜像 要是有私服
+也可推送到私服`
+
+> una-gateway/Dockerfile
+
+> una-provider/Dockerfile
+
+> una-consumer/Dockerfile
+
+> una-admin/Dockerfile
+
+#### 4.5.1 相关pom.xml文件的maven插件
+
+```xml
+<!--docker maven-->
+<plugin>
+    <groupId>io.fabric8</groupId>
+    <artifactId>docker-maven-plugin</artifactId>
+    <version>0.35.0</version>
+    <!--全局配置-->
+    <configuration>
+        <!--配置远程docker守护进程url-->
+        <!--http://192.168.0.6:2375 也可-->
+        <dockerHost>tcp://192.168.0.6:2375</dockerHost>
+        <!--认证配置,用于私有registry认证-->
+        <!--<authConfig>
+            <username>admin</username>
+            <password>admin</password>
+        </authConfig>-->
+        <!--镜像相关配置,支持多镜像-->
+        <images>
+            <!-- 单个镜像配置 -->
+            <image>
+                <!--镜像名(含版本号)-->
+                <name>ahviplc/${project.name}:${project.version}</name>
+                <!--registry地址,用于推送,拉取镜像-->
+                <registry>192.168.0.6</registry>
+                <!--镜像build相关配置-->
+                <build>
+                    <!--使用dockerFile文件-->
+                    <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                </build>
+            </image>
+        </images>
+    </configuration>
+</plugin>
+```
+
+#### 4.5.2 执行相关命令
+
+```bash
+`java项目打包同时打包Docker镜像命令`
+首先 进入u-na根目录
+cd u-na
+然后执行命令:
+mvn clean package
+
+`cd到有mavend插件ocker-maven-plugin的项目根目录执行下面命令` `打包Docker镜像`
+比如:
+cd una-admin
+也就是根目录含有Dockerfile的项目
+然后执行命令:
+mvn docker:build
+
+`要是有私服 也可推送到私服`
+mvn docker:push
+
+`运行docker镜像命令`
+docker run -dit --name una-gateway-run -p 5000:5000 ahviplc/una-gateway:1.0.0
+
+docker run -dit --name una-provider-run -p 8762:8762 ahviplc/una-provider:1.0.0
+
+docker run -dit --name una-consumer-run -p 8763:8763 ahviplc/una-consumer:1.0.0
+
+docker run -dit --name una-admin-run -p 8090:8090 ahviplc/una-admin:1.0.0
+
+参数说明:
+其中关键参数为-d，指定容器运行与前台或者后台，不加上时前台
+-i: 打开STDIN，用于控制台交互
+-t: 支持终端登录
+
+测试访问:
+http://192.168.0.6:5000/provider/nowTime
+
+http://192.168.0.6:8762/hi
+
+docker版的nacos访问: `账户密码都是nacos`
+http://192.168.0.6:8848/nacos/#/login
+```
+
 ## 5.0 访问我
 
 `下面是此项目的一些访问链接`
@@ -459,7 +551,7 @@ https://github.com/spotify/docker-maven-plugin
 GitHub - spotify/dockerfile-maven: MATURE: A set of Maven tools for dealing with Dockerfiles
 https://github.com/spotify/dockerfile-maven
 
-K8S入门系列(10)-使用开源项目io.fabric8之docker-maven-plugin插件打包Docker镜像至私服_云烟成雨csdn的博客-CSDN博客
+6-很不错-借鉴了-K8S入门系列(10)-使用开源项目io.fabric8之docker-maven-plugin插件打包Docker镜像至私服_云烟成雨csdn的博客-CSDN博客
 https://blog.csdn.net/qq_43437874/article/details/106913747
 
 GitHub - fabric8io/docker-maven-plugin: Maven plugin for running and creating Docker images

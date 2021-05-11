@@ -49,6 +49,7 @@
         <maven-plugin.version>2.4.5</maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <!--<jedis.version>3.6.0</jedis.version>-->
+        <fabric8io-docker-maven-plugin.version>0.35.0</fabric8io-docker-maven-plugin.version>
     </properties>
 
     <modules>
