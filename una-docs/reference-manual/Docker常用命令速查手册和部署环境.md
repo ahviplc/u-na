@@ -349,6 +349,75 @@ root@44a9e27570bf:/usr/local/lc-es-api-dir# cat cat.txt
 ``
 ```
 
+#### 3.3.8 从启动的容器创建新的镜像：docker commit
+
+> docker commit ：从容器创建一个新的镜像
+
+`参数说明`
+
+```markdown
+-a : 提交的镜像作者
+-c : 使用Dockerfile指令创建镜像
+-m : 提交时的说明文字
+-p : 在commit时 将容器暂停
+再后面就是要生成对应镜像的容器id和镜像名+版本号
+```
+
+##### 3.3.8.1 redis
+
+```bash
+docker commit -a="LC ahlc@sina.cn" -m="redis image by LC" 86552cf2253f redis-docker-lc:1.0
+
+`打标签tag后push镜像`
+docker tag redis-docker-lc:1.0 ahviplc/redis-docker-lc:1.0
+
+docker push ahviplc/redis-docker-lc:1.0
+```
+
+##### 3.3.8.2 nacos
+
+```bash
+docker commit -a="LC ahlc@sina.cn" -m="nacos image by LC" 0ccbef25dbba nacos-docker-lc:1.0
+
+`打标签tag后push镜像`
+docker tag nacos-docker-lc:1.0 ahviplc/nacos-docker-lc:1.0
+
+docker push ahviplc/nacos-docker-lc:1.0
+```
+
+##### 3.3.8.3 mysql
+
+```bash
+docker commit -a="LC ahlc@sina.cn" -m="mysql image by LC" 37fe23c37aab mysql-docker-lc:1.0
+
+`打标签tag后push镜像`
+docker tag mysql-docker-lc:1.0 ahviplc/mysql-docker-lc:1.0
+
+docker push ahviplc/mysql-docker-lc:1.0
+```
+
+##### 3.3.8.4 zipkin
+
+```bash
+docker commit -a="LC ahlc@sina.cn" -m="zipkin image by LC" 438af27e654b zipkin-docker-lc:1.0
+
+`打标签tag后push镜像`
+docker tag zipkin-docker-lc:1.0 ahviplc/zipkin-docker-lc:1.0
+
+docker push ahviplc/zipkin-docker-lc:1.0
+```
+
+##### 3.3.8.5 sentinel
+
+```bash
+docker commit -a="LC ahlc@sina.cn" -m="sentinel image by LC" 5e6906075d75 sentinel-docker-lc:1.0
+
+`打标签tag后push镜像`
+docker tag sentinel-docker-lc:1.0 ahviplc/sentinel-docker-lc:1.0
+
+docker push ahviplc/sentinel-docker-lc:1.0
+```
+
 ## 4. 实战
 
 ### 4.1 安装nacos
@@ -905,5 +974,8 @@ https://blog.csdn.net/jackghq/article/details/54974141
 
 Ubuntu 非root用户使用Docker命令提示：connect: permission denied_wick_hp的博客-CSDN博客
 https://blog.csdn.net/qq_36488647/article/details/104356685
+
+Docker通过容器生成镜像(通过容器提交（docker commit）成镜像)_捕影世界-CSDN博客_docker 容器生成镜像
+https://blog.csdn.net/qmw19910301/article/details/88070159
 ```
 
