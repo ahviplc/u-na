@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  zipkin:
+    image: ahviplc/zipkin-docker-lc:1.0
+    container_name: zipkin
+    environment:
+      - STORAGE_TYPE=mysql
+      - MYSQL_DB=zipkin
+      - MYSQL_USER=root
+      - MYSQL_PASS=root
+      - MYSQL_HOST=mysql
+      - MYSQL_TCP_PORT=3306
+    ports:
+      - 9411:9411
+    networks:
+      - una
+
+networks:
+  una:
+    external: true

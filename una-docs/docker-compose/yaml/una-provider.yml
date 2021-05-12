@@ -1,0 +1,20 @@
+# 基于版本
+version: '3'
+services:
+  # 授权服务
+  una-provider:
+    image: ahviplc/una-provider:1.0.0
+    container_name: una-provider
+    restart: always
+    ports:
+      - 8762:8762
+    networks:
+      - una
+    environment:
+      - COMPOSE_PROJECT_NAME=una-provider
+    volumes:
+      - ../log/:/una/deploy/app/logs/
+      - ../config/una-provider/:/config/
+networks:
+  una:
+    external: true

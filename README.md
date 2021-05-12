@@ -324,6 +324,24 @@ docker版的nacos访问: `账户密码都是nacos`
 http://192.168.0.6:8848/nacos/#/login
 ```
 
+### 4.7 引入docker-compose
+
+```
+1. 创建docker的una网络
+docker network create una
+`默认网桥模式`
+
+2. 执行start
+docker-compose -p una-admin -f ../yaml/una-admin.yml up -d
+
+3. 执行down
+docker-compose -p una-admin -f ../yaml/una-admin.yml down
+
+4. 批量操作
+una-docs/docker-compose/bin/unaStartup.sh
+una-docs/docker-compose/bin/unaShutdown.sh
+```
+
 ## 5.0 访问我
 
 `下面是此项目的一些访问链接`

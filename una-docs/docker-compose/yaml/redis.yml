@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  redis:
+    image: ahviplc/redis-docker-lc:1.0
+    restart: always
+    container_name: redis
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass una2021 --appendonly yes # 启动redis服务并添加密码为：una2021,并开启redis持久化配置
+    volumes:
+      - ../data/redis_data:/data
+    networks:
+      - una
+
+networks:
+  una:
+    external: true

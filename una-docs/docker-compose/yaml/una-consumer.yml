@@ -1,0 +1,20 @@
+# 基于版本
+version: '3'
+services:
+  # 授权服务
+  una-provider:
+    image: ahviplc/una-consumer:1.0.0
+    container_name: una-consumer
+    restart: always
+    ports:
+      - 8763:8763
+    networks:
+      - una
+    environment:
+      - COMPOSE_PROJECT_NAME=una-consumer
+    volumes:
+      - ../log/:/una/deploy/app/logs/
+      - ../config/una-consumer/:/config/
+networks:
+  una:
+    external: true

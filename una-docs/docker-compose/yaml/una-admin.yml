@@ -1,0 +1,20 @@
+# 基于版本
+version: '3'
+services:
+  # 授权服务
+  una-admin:
+    image: ahviplc/una-admin:1.0.0
+    container_name: una-admin
+    restart: always
+    ports:
+      - 8090:8090
+    networks:
+      - una
+    environment:
+      - COMPOSE_PROJECT_NAME=una-admin
+    volumes:
+      - ../log/:/una/deploy/app/logs/
+      - ../config/una-admin/:/config/
+networks:
+  una:
+    external: true

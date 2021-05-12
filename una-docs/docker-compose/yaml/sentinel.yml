@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  sentinel:
+    image: ahviplc/sentinel-docker-lc:1.0
+    restart: always
+    container_name: sentinel
+    ports:
+      - 8070:8070
+    networks:
+      - una
+
+networks:
+  una:
+    external: true
