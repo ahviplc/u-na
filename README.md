@@ -100,11 +100,29 @@ docker-compose --version
 2. docker pull nacos/nacos-server
 3. docker images
 4. docker run -d -p 8848:8848 --env MODE=standalone --name nacos-server-run docker.io/nacos/nacos-server
-5. docker logs -f --tail=30 82feb08be237
-6. 验证是否成功
+5. `实际执行 使用mysql数据库`
+
+docker run -d \
+-e PREFER_HOST_MODE=ip \
+-e MODE=standalone \
+-e SPRING_DATASOURCE_PLATFORM=mysql \
+-e MYSQL_SERVICE_HOST=172.0.0.1 \
+-e MYSQL_SERVICE_PORT=3306 \
+-e MYSQL_SERVICE_USER=root \
+-e MYSQL_SERVICE_PASSWORD=ljroot \
+-e MYSQL_SERVICE_DB_NAME=nacos_config \
+-e TIME_ZONE='Asia/Shanghai' \
+-v $PWD/nacos/logs:/home/nacos/logs \
+-p 8848:8848 \
+--name nacos \
+--restart=always \
+nacos/nacos-server:latest
+
+6. docker logs -f --tail=30 82feb08be237
+7. 验证是否成功
    http://localhost:8848/nacos
    默认用户名密码都是： nacos
-7. done.
+8. done.
 ```
 
 #### 3.3.3 手动下载安装运行nacos
