@@ -228,7 +228,7 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 > una-admin/src/main/java/com/lc/una/admin/annotion/CallMeLog/CallMeLog.java
 
-### 4.5 引入docker maven
+### 4.6 引入docker maven
 
 `使用开源项目io.fabric8之docker-maven-plugin插件打包Docker镜像 要是有私服
 也可推送到私服`
@@ -241,7 +241,7 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 > una-admin/Dockerfile
 
-#### 4.5.1 相关pom.xml文件的maven插件
+#### 4.6.1 相关pom.xml文件的maven插件
 
 ```xml
 <!--docker maven-->
@@ -278,7 +278,7 @@ u-na/logs/una-consumer/una-consumer-info.log
 </plugin>
 ```
 
-#### 4.5.2 执行相关命令
+#### 4.6.2 执行相关命令
 
 ```bash
 `java项目打包同时打包Docker镜像命令`
