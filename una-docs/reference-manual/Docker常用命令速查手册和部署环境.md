@@ -713,7 +713,9 @@ docker run --name sentinel -d -p 8858:8858 -d bladex/sentinel-dashboard
 
 #### 4.4.3 访问DASHBOARD
 
-访问地址：http://ip:8858/#/login 账户密码：sentinel/sentinel
+访问地址：http://ip:8858/#/login
+
+账户密码：sentinel/sentinel
 
 ### 4.5 安装MySQL
 
@@ -842,6 +844,7 @@ docker run \
 #### 4.6.3 运行
 
 Transmission WEB 控制器 1.6.1
+
 http://192.168.0.4:9091/transmission/web/
 
 ### 4.7 安装aria2-pro
@@ -869,7 +872,11 @@ docker run -d \
 
 #### 4.7.3 运行
 
-> 浏览器插件或者其他aria2客户端使用即可
+> 浏览器插件或者其他aria2客户端使用即可 备注:RPC_SECRET=12345
+
+`Aria2 for Edge`插件
+
+> https://microsoftedge.microsoft.com/addons/detail/aria2-for-edge/jjfgljkjddpcpfapejfkelkbjbehagbh?hl=zh-CN
 
 ### 4.8 安装h5ai
 
@@ -886,6 +893,7 @@ docker run -d -p 5555:80 -v /docker-data/h5ai:/h5ai --name h5ai ilemonrain/h5ai:
 #### 4.8.3 运行
 
 index - powered by h5ai v0.29.0 (https://larsjung.de/h5ai/)
+
 http://192.168.0.4:5555/test/
 
 ### 4.9 其他说明
