@@ -693,6 +693,8 @@ docker exec -it redis_s redis-cli -h 192.168.1.100 -p 6379 -a your_password //�
 
 > docker run --name zipkin -d -p 9411:9411 openzipkin/zipkin
 
+> docker run --name zipkin -d -p 9411:9411 ahviplc/zipkin-docker-lc:1.0
+
 #### 4.3.3 运行
 
 > 浏览器打开 http://Linux的IP:9411
@@ -817,7 +819,76 @@ mysql -h localhost -u root -p
 命令：flush privileges;
 ```
 
-### 4.6 其他说明
+### 4.6 安装transmission
+
+#### 4.6.1 拉取镜像
+
+> docker pull gists/transmission:latest
+
+#### 4.6.2 启动
+
+```bash
+docker run \
+    -d \
+    --name transmission \
+    -p 9091:9091 \
+    -p 51413:51413 \
+    -v /docker-data/transmission/data:/data \
+    -e USERNAME=admin \
+    -e PASSWORD=admin \
+    gists/transmission
+```
+
+#### 4.6.3 运行
+
+Transmission WEB 控制器 1.6.1
+http://192.168.0.4:9091/transmission/web/
+
+### 4.7 安装aria2-pro
+
+#### 4.7.1 拉取镜像
+
+> docker pull p3terx/aria2-pro:latest
+
+#### 4.7.2 启动
+
+```bash
+docker run -d \
+    --name aria2-pro \
+    --restart unless-stopped \
+    --network host \
+    -e PUID=$UID \
+    -e PGID=$GID \
+    -e RPC_SECRET=12345 \
+    -e RPC_PORT=6800 \
+    -e LISTEN_PORT=6888 \
+    -v /docker-data/aria2/aria2-config:/config \
+    -v /docker-data/aria2/downloads:/downloads \
+    p3terx/aria2-pro
+```
+
+#### 4.7.3 运行
+
+> 浏览器插件或者其他aria2客户端使用即可
+
+### 4.8 安装h5ai
+
+#### 4.8.1 拉取镜像
+
+> docker pull ilemonrain/h5ai:full
+
+#### 4.8.2 启动
+
+```bash
+docker run -d -p 5555:80 -v /docker-data/h5ai:/h5ai --name h5ai ilemonrain/h5ai:full
+```
+
+#### 4.8.3 运行
+
+index - powered by h5ai v0.29.0 (https://larsjung.de/h5ai/)
+http://192.168.0.4:5555/test/
+
+### 4.9 其他说明
 
 Linux下docker数据目录结构 `中间有删减`
 
@@ -867,6 +938,7 @@ root@lc-virtual-machine:/docker-data#
 ## 5. 扩展
 
 `ahviplc's Profile Docker Hub`
+
 > https://hub.docker.com/u/ahviplc
 
 ```
