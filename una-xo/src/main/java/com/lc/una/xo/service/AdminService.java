@@ -14,72 +14,72 @@ import java.util.List;
  */
 public interface AdminService extends SuperService<Admin> {
 
-    /**
-     * 通过UID获取Admin
-     *
-     * @param uid
-     * @return
-     */
-    public Admin getAdminByUid(String uid);
+	/**
+	 * 通过UID获取Admin
+	 *
+	 * @param uid
+	 * @return
+	 */
+	public Admin getAdminByUid(String uid);
 
-    /**
-     * 获取全部管理员列表
-     *
-     * @return
-     */
-    public List<Admin> getAllAdminList();
+	/**
+	 * 获取全部管理员列表
+	 *
+	 * @return
+	 */
+	public List<Admin> getAllAdminList();
 
-    /**
-     * 获取管理员列表 包含分页信息
-     *
-     * @param adminVO
-     * @return
-     */
-    public String getList(AdminVO adminVO);
+	/**
+	 * 获取管理员列表 包含分页信息
+	 *
+	 * @param adminVO
+	 * @return
+	 */
+	public String getList(AdminVO adminVO);
 
-    /**
-     * 添加管理员
-     *
-     * @param adminVO
-     * @return
-     */
-    public String addAdmin(AdminVO adminVO);
+	/**
+	 * 添加管理员
+	 *
+	 * @param adminVO
+	 * @return
+	 */
+	public String addAdmin(AdminVO adminVO);
 
-    /**
-     * 编辑管理员
-     *
-     * @param adminVO
-     * @return
-     */
-    public String editAdmin(AdminVO adminVO);
+	/**
+	 * 编辑管理员
+	 *
+	 * @param adminVO
+	 * @return
+	 */
+	public String editAdmin(AdminVO adminVO);
 
-    /**
-     * 编辑当前管理员信息
-     *
-     * @return
-     */
-    public String editMe(AdminVO adminVO);
+	/**
+	 * 编辑当前管理员信息
+	 *
+	 * @return
+	 */
+	public String editMe(AdminVO adminVO);
 
-    /**
-     * 修改密码
-     *
-     * @return
-     */
-    public String changePwd(String oldPwd, String newPwd);
+	/**
+	 * 修改密码
+	 *
+	 * @return
+	 */
+	public String changePwd(String oldPwd, String newPwd);
 
-    /**
-     * 重置密码
-     *
-     * @param adminVO
-     * @return
-     */
-    public String resetPwd(AdminVO adminVO);
+	/**
+	 * 重置密码
+	 *
+	 * @param adminVO
+	 * @return
+	 */
+	public String resetPwd(AdminVO adminVO);
 
-    /**
-     * 批量删除管理员
-     *
-     * @param adminUids
-     * @return
-     */
-    public String deleteBatchAdmin(List<String> adminUids);
+	/**
+	 * 批量删除管理员
+	 *
+	 * @param adminUids
+	 * @return
+	 */
+	public String deleteBatchAdmin(List<String> adminUids);
 }
