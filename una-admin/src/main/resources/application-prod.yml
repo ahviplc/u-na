@@ -119,9 +119,15 @@ mybatis-plus:
     # 配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
     map-underscore-to-camel-case: true
     cache-enabled: false
+    # 配置sql语句的日志输出 放开即可使用
+    # 也可配置使用p6spy【https://mybatis.plus/guide/p6spy.html】
+    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 #==============================actuator配置=======================================
 management:
+  health:
+    redis:
+      enabled: false # 关闭redis的健康检查 在win的redis下会报【IllegalArgumentException: Malformed \uxxxx encoding】 在Linux的redis下ok的.
   endpoints:
     web:
       base-path: /actuator #配置端点访问前缀

@@ -9,12 +9,14 @@ import com.lc.una.base.enums.PlatformEnum;
 import com.lc.una.base.exception.ThrowableUtils;
 import com.lc.una.base.validator.group.GetList;
 import com.lc.una.base.validator.group.Insert;
+import com.lc.una.base.validator.group.Update;
 import com.lc.una.commons.entity.Admin;
 import com.lc.una.utils.tools.ResultUtil;
 import com.lc.una.xo.service.AdminService;
 import com.lc.una.xo.vo.AdminVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 /**
  * 管理员表 控制层 AdminController
@@ -40,7 +44,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-	@CallMeLog(value = "通过uid获取管理员-通过path传参方式", platform = PlatformEnum.ADMIN)
+	@CallMeLog(value = "获取管理员列表-包含分页信息", platform = PlatformEnum.ADMIN)
 	@AuthorityVerify(value = "LC")
 	@ApiOperation(value = "获取管理员列表-包含分页信息", notes = "获取管理员列表-包含分页信息")
 	@PostMapping("/getList")
@@ -89,5 +93,21 @@ public class AdminController {
 		// 参数校验
 		ThrowableUtils.checkParamArgument(result);
 		return adminService.addAdmin(adminVO);
+	}
+
+	@CallMeLog(value = "更新管理员", platform = PlatformEnum.ADMIN)
+	@ApiOperation(value = "更新管理员", notes = "更新管理员")
+	@PostMapping("/edit")
+	public String edit(@Validated({Update.class}) @RequestBody AdminVO adminVO, BindingResult result) {
+		// 参数校验
+		ThrowableUtils.checkParamArgument(result);
+		return adminService.editAdmin(adminVO);
+	}
+
+	@CallMeLog(value = "批量删除管理员", platform = PlatformEnum.ADMIN)
+	@ApiOperation(value = "批量删除管理员", notes = "批量删除管理员")
+	@PostMapping("/delete")
+	public String delete(@ApiParam(name = "adminUids", value = "管理员uid集合", required = true) @RequestParam(name = "adminUids", required = true) List<String> adminUids) {
+		return adminService.deleteBatchAdmin(adminUids);
 	}
 }

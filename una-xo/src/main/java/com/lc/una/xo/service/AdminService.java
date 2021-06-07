@@ -15,7 +15,22 @@ import java.util.List;
 public interface AdminService extends SuperService<Admin> {
 
     /**
-     * 获取管理员列表
+     * 通过UID获取Admin
+     *
+     * @param uid
+     * @return
+     */
+    public Admin getAdminByUid(String uid);
+
+    /**
+     * 获取全部管理员列表
+     *
+     * @return
+     */
+    public List<Admin> getAllAdminList();
+
+    /**
+     * 获取管理员列表 包含分页信息
      *
      * @param adminVO
      * @return
@@ -31,12 +46,40 @@ public interface AdminService extends SuperService<Admin> {
     public String addAdmin(AdminVO adminVO);
 
     /**
-     * 通过UID获取Admin
+     * 编辑管理员
      *
-     * @param uid
+     * @param adminVO
      * @return
      */
-    public Admin getAdminByUid(String uid);
+    public String editAdmin(AdminVO adminVO);
 
-    public List<Admin> getAllAdminList();
+    /**
+     * 编辑当前管理员信息
+     *
+     * @return
+     */
+    public String editMe(AdminVO adminVO);
+
+    /**
+     * 修改密码
+     *
+     * @return
+     */
+    public String changePwd(String oldPwd, String newPwd);
+
+    /**
+     * 重置密码
+     *
+     * @param adminVO
+     * @return
+     */
+    public String resetPwd(AdminVO adminVO);
+
+    /**
+     * 批量删除管理员
+     *
+     * @param adminUids
+     * @return
+     */
+    public String deleteBatchAdmin(List<String> adminUids);
 }
