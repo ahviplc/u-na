@@ -190,7 +190,7 @@ public class AdminServiceImpl extends SuperServiceImpl<AdminMapper, Admin> imple
 
 	@Override
 	public String resetPwd(AdminVO adminVO) {
-//      // 默认密码 123456
+        // 默认密码 123456
 		String defaultPassword = "123456";
 		// 获取当前用户的管理员uid
 		String adminUid = RequestHolder.getAdminUid();
