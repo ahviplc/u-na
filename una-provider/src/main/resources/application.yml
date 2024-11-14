@@ -1,8 +1,8 @@
 spring:
   profiles:
     # 启动dev环境的配置文件
-    active: dev
-    # 启动proc环境的配置文件
-    # active: proc
+    active: prod
+    # 启动prod环境的配置文件
+    # active: prod
     # 启动test环境的配置文件
     # active: test

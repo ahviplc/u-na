@@ -1,3 +1,5 @@
+# 配置管理-配置列表
+# 配置组 test | 配置ID una-provider-test.yaml
 server:
   port: 8762
 
@@ -33,3 +35,5 @@ spring:
       type: web
     service:
       name: una-provider
+
+diyName: LC-test

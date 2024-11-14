@@ -1,3 +1,8 @@
+# 这里其实不需要再次配置
+# bootstrap.yml 可在rnacos的配置中心进行配置
+# 配置管理-配置列表
+# 配置组 dev | 配置ID una-gateway-dev.yaml
+# 然后将下面的内容 拷贝过去即可
 server:
   port: 5000
 

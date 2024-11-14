@@ -206,6 +206,12 @@ u-na/logs/una-consumer/una-consumer-info.log
 
 > http://localhost:9411
 
+`访问rnacos后台管理页面`
+
+> http://localhost:10848/rnacos/p/login?redirect_url=%2Frnacos
+
+> 默认用户名密码 admin admin
+
 ## 6.0 参考资料
 
 ```markdown
@@ -289,6 +295,15 @@ https://gitee.com/dromara/hutool/blob/v5-master/hutool-log/src/test/java/cn/huto
 
 mogu_picture/src/main/resources/logback-spring.xml · 陌溪/蘑菇博客 - Gitee.com
 https://gitee.com/moxi159753/mogu_blog_v2/blob/Nacos/mogu_picture/src/main/resources/logback-spring.xml
+
+#为什么要定义bootstrap.yml | Nacos 官网
+https://nacos.io/blog/faq/nacos-user-question-history10504/
+
+R-NACOS | R-NACOS docs
+https://r-nacos.github.io/docs/
+
+GitHub - nacos-group/r-nacos: Nacos server re-implemented in Rust.
+https://github.com/nacos-group/r-nacos
 ```
 
 ## 7.0 其他

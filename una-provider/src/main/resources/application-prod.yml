@@ -1,3 +1,6 @@
+# 配置管理-配置列表
+# 配置组 prod | 配置ID una-provider-prod.yaml
+# 注意-需要在命名空间 prod 下进行创建
 server:
   port: 8762
 
@@ -7,8 +10,8 @@ spring:
 
   cloud:
     nacos:
-      username: nacos
-      password: nacos
+#      username: nacos
+#      password: nacos
 
       discovery:
         server-addr: localhost:8848
@@ -33,3 +36,5 @@ spring:
       type: web
     service:
       name: una-provider
+
+diyName: LC-prod
